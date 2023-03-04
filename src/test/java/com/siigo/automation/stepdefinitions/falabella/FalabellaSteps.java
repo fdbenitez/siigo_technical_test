@@ -1,6 +1,7 @@
 package com.siigo.automation.stepdefinitions.falabella;
 
 import com.siigo.automation.model.models.client.Client;
+import com.siigo.automation.screenplay.task.AddItemsTo;
 import com.siigo.automation.screenplay.task.SearchArticle;
 import com.siigo.automation.screenplay.task.SearchFalabella;
 import com.siigo.automation.utils.SessionHelper;
@@ -42,12 +43,12 @@ public class FalabellaSteps {
     }
 
     @When("Solicita la compra del articulo: {string} en la tienda de {string}")
-    public void solicitaLaCompraDelArticulo(String article, String ecommerce){
-        theActorInTheSpotlight().attemptsTo(
-                SearchFalabella.searchFalabella(ecommerce));
+    public void solicitaLaCompraDelArticulo(String article, String ecommerce) {
+        theActorInTheSpotlight().attemptsTo(SearchFalabella.searchFalabella(ecommerce));
         ShadowHandler.openShadow(driver);
         theActorInTheSpotlight().attemptsTo(
-                SearchArticle.inSite(article)
+                SearchArticle.inSite(article),
+                AddItemsTo.cart(article)
         );
     }
 
