@@ -1,0 +1,63 @@
+defaultTasks 'clean', 'test', 'aggregate'
+
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "net.serenity-bdd:serenity-gradle-plugin:3.6.7"
+        classpath "io.freefair.gradle:lombok-plugin:6.5.0.3"
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: "net.serenity-bdd.serenity-gradle-plugin"
+apply plugin: "io.freefair.lombok"
+
+group 'com.siigo.automation'
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+ext {
+    slf4jVersion = '2.0.6'
+    serenityCoreVersion = '3.6.12'
+    yamlbeansVersion = '1.15'
+    assertJVersion = '3.23.1'
+    logbackVersion = '1.7.25'
+    jacksonVersion = '2.13.3'
+    junitVersion = '5.9.2'
+}
+
+dependencies {
+
+    implementation group: 'org.slf4j', name: 'slf4j-simple', version: '2.0.6',
+            "net.serenity-bdd:serenity-core:${serenityCoreVersion}",
+            "net.serenity-bdd:serenity-junit:${serenityCoreVersion}",
+            "net.serenity-bdd:serenity-cucumber:${serenityCoreVersion}",
+            "net.serenity-bdd:serenity-screenplay-webdriver:${serenityCoreVersion}",
+            "org.junit.jupiter:junit-jupiter-api:${junitVersion}",
+            "net.serenity-bdd:serenity-screenplay:${serenityCoreVersion}",
+            "net.serenity-bdd:serenity-screenplay-rest:${serenityCoreVersion}",
+            "com.esotericsoftware.yamlbeans:yamlbeans:${yamlbeansVersion}",
+            "com.google.code.gson:gson:2.10.1"
+
+}
+
+wrapper {
+    gradleVersion = '8.0.2'
+}
+
+test {
+    testLogging.showStandardStreams = true
+    systemProperties System.getProperties()
+}
+
+gradle.startParameter.continueOnFailure = true
+test.finalizedBy(aggregate)

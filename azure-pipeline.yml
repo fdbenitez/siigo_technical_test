@@ -1,0 +1,26 @@
+# Maven
+# Build your Java project and run tests with Apache Maven.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/java
+
+resources:
+  repositories:
+  - repository: Pipelines
+    type: git
+    name: Pipelines
+    ref: main
+
+trigger:
+- master
+- develop
+
+variables:
+- group: Synopsys_DEV
+
+name: $(Build.SourceBranchName).$(date:yyyyMMdd)$(rev:.r)
+jobs:
+- job: Build
+  pool:
+   name: Siigo-Agent-pool
+  steps:
+    - template: azure-pipeline-qa.yml@Pipelines
