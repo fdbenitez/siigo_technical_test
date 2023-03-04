@@ -1,0 +1,11 @@
+name: "Fray"
+user:
+  !com.siigo.automation.model.models.client.User
+  fullName: "Fray David Benitez Blanco"
+  documentNumber: "123456"
+---
+name: "Juan"
+user:
+  !com.siigo.automation.model.models.client.User
+  fullName: "Juan David Lopez"
+  documentNumber: "1234567"
