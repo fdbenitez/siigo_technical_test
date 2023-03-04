@@ -8,6 +8,6 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         snippets = CucumberOptions.SnippetType.CAMELCASE,
         features = "src/test/resources/features",
-        glue = {"com.siigo.automation.stepdefinitions"})
+        glue = {"com.siigo.automation.stepdefinitions","com.siigo.automation.setup"})
 public class TestSuiteComplete {
 }

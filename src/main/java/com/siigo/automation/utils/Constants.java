@@ -21,4 +21,6 @@ public class Constants {
     private static final EnvironmentVariables environmentVariables = CONFIGURATION.getEnvironmentVariables();
     private static final String CONFIG_PATH = Paths.get(new File("").getAbsolutePath(), "src", "test", "resources").toString();
     public static final String USERS_PATH = Paths.get(CONFIG_PATH, EnvironmentSpecificConfiguration.from(environmentVariables).getProperty("users.file")).toString();
+
+    public static final String BASE_URL = EnvironmentSpecificConfiguration.from(environmentVariables).getProperty("base.url");
 }
