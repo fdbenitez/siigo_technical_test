@@ -1,6 +1,7 @@
 package com.siigo.automation.stepdefinitions.commons;
 
 import com.siigo.automation.model.models.client.Client;
+import com.siigo.automation.screenplay.questions.app.WelcomeMessage;
 import com.siigo.automation.screenplay.questions.falabella.ValidatePrice;
 import com.siigo.automation.screenplay.questions.falabella.ValidateProduct;
 import com.siigo.automation.screenplay.questions.regresin.DeleteUser;
@@ -66,6 +67,12 @@ public class CommonsSteps {
     @Then("el servicio elimina los datos de usuario")
     public void elServicioEliminaLosDatosDeUsuario() {
         theActorInTheSpotlight().asksFor(DeleteUser.validate());
+
+    }
+
+    @Then("Se debe mostrar el mensaje de bienvenida")
+    public void seDebeMostrarElMensajeDeBienvenida() {
+        theActorInTheSpotlight().asksFor(WelcomeMessage.is());
 
     }
 }

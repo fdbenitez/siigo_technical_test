@@ -8,8 +8,8 @@ import net.serenitybdd.screenplay.actions.Scroll;
 import net.serenitybdd.screenplay.matchers.WebElementStateMatchers;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 
-import static com.siigo.automation.screenplay.ui.ProductPage.GO_PAYMENT;
-import static com.siigo.automation.screenplay.ui.ProductPage.SUBTOTAL;
+import static com.siigo.automation.screenplay.ui.web.ProductPage.GO_PAYMENT;
+import static com.siigo.automation.screenplay.ui.web.ProductPage.SUBTOTAL;
 import static com.siigo.automation.utils.Constants.SUBTOTAL_VALUE;
 
 public class GoPayment implements Task {
