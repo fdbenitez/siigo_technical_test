@@ -7,8 +7,8 @@ import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.matchers.WebElementStateMatchers;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 
-import static com.siigo.automation.screenplay.ui.ProductPage.INCREASE;
-import static com.siigo.automation.screenplay.ui.ProductPage.SEE_CART;
+import static com.siigo.automation.screenplay.ui.web.ProductPage.INCREASE;
+import static com.siigo.automation.screenplay.ui.web.ProductPage.SEE_CART;
 import static com.siigo.automation.utils.RandomDataHelper.increaseRandom;
 
 public class IncreaseItems implements Task {

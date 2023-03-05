@@ -149,7 +149,7 @@
             <a href="capabilities.html"><i class="bi bi-journal-text"></i> Requirements</a>
         </li>
     </ul>
-    <span class="date-and-time"><a href="build-info.html"><i class="bi bi-info-circle"></i></a> Report generated 05-03-2023 02:36</span>
+    <span class="date-and-time"><a href="build-info.html"><i class="bi bi-info-circle"></i></a> Report generated 05-03-2023 18:17</span>
     <br style="clear:left"/>
 </div>
 
@@ -196,9 +196,9 @@
                 <table class="outcome-header">
                     <tr>
                         <td colspan="2" class="test-title-bar">
-                            <span class="outcome-icon"><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon fa-2x' title='SUCCESS'></i></a></span>
+                            <span class="outcome-icon"><a href='##beforetable'><i class='bi bi-exclamation-triangle-fill error-icon fa-2x' title='ERROR'></i></a></span>
                             <span class="test-case-title">
-                                <span class="success-color">Compra de un articulo con garantia extendida en firefox
+                                <span class="error-color">Compra de un articulo con garantia extendida en firefox
                                     <span class="related-issue-title"></span>
                                 </span>
                             </span>
@@ -215,52 +215,57 @@
 
     <div id="beforetable"></div>
     <div id="contenttilttle">
+            <div class="screenshotFailure panel panel-danger">
+    <div style="display:block">
+        <div class="table">
+            <div class="row">
+                <div class="col-sm-10" style="padding-left:1.5em; padding-top:0.5em; padding-bottom:0.5em;">
+                    <span class="error-message error-message-title">No such element exception: Unable to locate element: #testId-SearchBar-Input</span>
+                </div>
+                <div class="col-sm-2">
+                    <a class="btn btn-warning details-button" data-toggle="collapse" href="#stacktraceModal-overall"
+                       role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><i class="bi bi-eye"></i> More details</a>
+                </div>
+             </div>
+        </div>
+    <div>
+
+    <!-- Details Section -->
+    <div class="row stacktrace-details">
+      <div class="col">
+        <div class="collapse multi-collapse" id="stacktraceModal-overall">
+            <div class="card">
+                <div class="card-header">
+                    <h4>org.openqa.selenium.NoSuchElementException </h4>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <pre>com.siigo.automation.screenplay.task.falabella.SearchArticle.performAs(SearchArticle.java:25)<br />com.siigo.automation.stepdefinitions.falabella.SetupFirefoxSteps.solicitaLaCompraDelArticulo(SetupFirefoxSteps.java:39)<br />io.cucumber.java.Invoker.doInvoke(Invoker.java:66)<br />io.cucumber.java.Invoker.invoke(Invoker.java:24)<br />io.cucumber.java.AbstractGlueDefinition.invokeMethod(AbstractGlueDefinition.java:47)<br />io.cucumber.java.JavaStepDefinition.execute(JavaStepDefinition.java:29)<br />io.cucumber.core.runner.CoreStepDefinition.execute(CoreStepDefinition.java:66)<br />io.cucumber.core.runner.PickleStepDefinitionMatch.runStep(PickleStepDefinitionMatch.java:63)<br />io.cucumber.core.runner.TestStep.executeStep(TestStep.java:84)<br />io.cucumber.core.runner.TestStep.run(TestStep.java:56)<br />io.cucumber.core.runner.PickleStepTestStep.run(PickleStepTestStep.java:51)<br />io.cucumber.core.runner.TestCase.run(TestCase.java:84)<br />io.cucumber.core.runner.Runner.runPickle(Runner.java:75)<br />io.cucumber.core.runtime.CucumberExecutionContext.lambda$runTestCase$5(CucumberExecutionContext.java:130)<br />io.cucumber.core.runtime.RethrowingThrowableCollector.executeAndThrow(RethrowingThrowableCollector.java:23)<br />io.cucumber.core.runtime.CucumberExecutionContext.runTestCase(CucumberExecutionContext.java:130)<br />io.cucumber.junit.FeatureRunner.runChild(FeatureRunner.java:144)<br />io.cucumber.junit.FeatureRunner.runChild(FeatureRunner.java:28)<br />io.cucumber.junit.FeatureRunner.run(FeatureRunner.java:137)<br />io.cucumber.junit.CucumberSerenityRunner.runChild(CucumberSerenityRunner.java:259)<br />io.cucumber.junit.CucumberSerenityRunner.runChild(CucumberSerenityRunner.java:59)<br />worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)<br />worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)<br /></pre>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+                    <div class="panel-body">
+                        <a href="pagesource17911368197402165178.html" target="_blank" class="btn btn-info">HTML Source</a>
+                    </div>
+            </div>
         <div class="slider-wrapper theme-default">
             <div id="slider">
-                <img src="7220659799343aa017d5c34b12b1fa60b058807b8bd7d8e34fdaf4c8846e46fe.png" title=" Given Que &quot;Juan&quot; es un usuario que navega a la pagina web de google en su navegador firefox" width="2560"/>
-                <img src="7220659799343aa017d5c34b12b1fa60b058807b8bd7d8e34fdaf4c8846e46fe.png" title=" Juan David Lopez opens the browser at https://google.com" width="2560"/>
+                <img src="269ee426ed75c9a4d6d47626f6072b86ea4e1cbf6a766a7c46fcc842e9d273e0.png" title=" Given Que &quot;Juan&quot; es un usuario que navega a la pagina web de google en su navegador firefox" width="2560"/>
+                <img src="269ee426ed75c9a4d6d47626f6072b86ea4e1cbf6a766a7c46fcc842e9d273e0.png" title=" Juan David Lopez opens the browser at https://google.com" width="2560"/>
+                <img src="7220659799343aa017d5c34b12b1fa60b058807b8bd7d8e34fdaf4c8846e46fe.png" title=" Juan David Lopez opens the browser at https://google.com (completed)" width="2560"/>
                 <img src="7220659799343aa017d5c34b12b1fa60b058807b8bd7d8e34fdaf4c8846e46fe.png" title=" Given Que &quot;Juan&quot; es un usuario que navega a la pagina web de google en su navegador firefox (completed)" width="2560"/>
-                <img src="de290bceca3276a33a7b28bca0b928b9d4a2d480750219415263a1a34f80d13f.png" title=" When Solicita la compra del articulo: &quot;Televisor JVC 50 Pulgadas LED 4K HDR Smart TV&quot; en la tienda de &quot;Falabella&quot;" width="2560"/>
+                <img src="7220659799343aa017d5c34b12b1fa60b058807b8bd7d8e34fdaf4c8846e46fe.png" title=" When Solicita la compra del articulo: &quot;Televisor JVC 50 Pulgadas LED 4K HDR Smart TV&quot; en la tienda de &quot;Falabella&quot;" width="2560"/>
                 <img src="de290bceca3276a33a7b28bca0b928b9d4a2d480750219415263a1a34f80d13f.png" title=" Juan david lopez search falabella" width="2560"/>
                 <img src="de290bceca3276a33a7b28bca0b928b9d4a2d480750219415263a1a34f80d13f.png" title=" Juan David Lopez enters 'Falabella' then hits [ENTER] into Buscar" width="2560"/>
-                <img src="d1e334533658e7b3e74b34a7de9f3ac4640b287b888aa2387662d1d5a9daee75.png" title=" Juan David Lopez enters 'Falabella' then hits [ENTER] into Buscar (completed)" width="2560"/>
-                <img src="ca1a55f8841647518235a5094878390cd6882260a205f996c51888880ceb4795.png" title=" Juan David Lopez clicks on Url sitio de falabella" width="2560"/>
-                <img src="7eec58a3b91acaa11f9712ffac2599bf69c6c2d329f07a21cc1022ece80cd092.png" title=" Juan David Lopez clicks on Url sitio de falabella (completed)" width="2560"/>
-                <img src="7eec58a3b91acaa11f9712ffac2599bf69c6c2d329f07a21cc1022ece80cd092.png" title=" Juan david lopez search falabella (completed)" width="2560"/>
-                <img src="7eec58a3b91acaa11f9712ffac2599bf69c6c2d329f07a21cc1022ece80cd092.png" title=" Juan david lopez search article" width="2560"/>
-                <img src="a618a4c6d68983290532e98c56c1ba1dc233a2222785bd2e2c52203a3d4c3cf7.png" title=" Juan David Lopez enters 'Televisor JVC 50 Pulgadas LED 4K HDR Smart TV' then hits [ENTER] into Que buscas" width="2560"/>
-                <img src="476299c7225d293c4a3c552c7b9460a99e76669e16016676afb643a15dcc58f4.png" title=" Juan David Lopez enters 'Televisor JVC 50 Pulgadas LED 4K HDR Smart TV' then hits [ENTER] into Que buscas" width="2560"/>
-                <img src="f05d755f81f4f3c96f9a1d084f5faca7e99173827d51a857330279e7899a60c3.png" title=" Juan David Lopez enters 'Televisor JVC 50 Pulgadas LED 4K HDR Smart TV' then hits [ENTER] into Que buscas (completed)" width="2560"/>
-                <img src="f05d755f81f4f3c96f9a1d084f5faca7e99173827d51a857330279e7899a60c3.png" title=" Juan david lopez search article (completed)" width="2560"/>
-                <img src="f05d755f81f4f3c96f9a1d084f5faca7e99173827d51a857330279e7899a60c3.png" title=" Juan david lopez add items to" width="2560"/>
-                <img src="cf5d9013edef2e703cd76b6fead767f3576add7bde2fc3dab399fe4e21012070.png" title=" Juan David Lopez clicks on Item" width="2560"/>
-                <img src="3f290b6c5d2f5217c6d7de93f1bbd64b36a648013875e09c2b426b55203320da.png" title=" Juan David Lopez clicks on Item (completed)" width="2560"/>
-                <img src="3f290b6c5d2f5217c6d7de93f1bbd64b36a648013875e09c2b426b55203320da.png" title=" Juan David Lopez clicks on Agregar a la bolsa" width="2560"/>
-                <img src="c6f8dc4dee3db9e7d0266f5d00fb27c14070f8d83fb8bdafa4235898526fbc84.png" title=" Juan David Lopez clicks on Agregar a la bolsa (completed)" width="2560"/>
-                <img src="c6f8dc4dee3db9e7d0266f5d00fb27c14070f8d83fb8bdafa4235898526fbc84.png" title=" Juan david lopez add items to (completed)" width="2560"/>
-                <img src="c6f8dc4dee3db9e7d0266f5d00fb27c14070f8d83fb8bdafa4235898526fbc84.png" title=" Juan david lopez increase items" width="2560"/>
-                <img src="07a9ddd4b6abacc144f7cdb9d27e59f7bc5a30dff36a1645dcb4be99337ceec2.png" title=" Juan David Lopez clicks on Ver bolsa de compras" width="2560"/>
-                <img src="4d5797ef7d272927b7ed83f76417e5d1c8468af6d217bc9d24c1669bf9e7d29e.png" title=" Juan David Lopez clicks on Ver bolsa de compras" width="2560"/>
-                <img src="eba3e9d39ab02b1cbeecbc8e1ec23042877eef3d037565a531c01cbaf6ff546f.png" title=" Juan David Lopez clicks on Ver bolsa de compras (completed)" width="2560"/>
-                <img src="eba3e9d39ab02b1cbeecbc8e1ec23042877eef3d037565a531c01cbaf6ff546f.png" title=" Juan David Lopez clicks on Incrementar articulo" width="2560"/>
-                <img src="f47aa3c6cf8a843516a62f22cb3964877b16111728187329db78bcff9ffc93f9.png" title=" Juan David Lopez clicks on Incrementar articulo" width="2560"/>
-                <img src="de0801304fe08f33fbd3ca58a47126c33a01e5307f02a20309c5bf50db676b45.png" title=" Juan David Lopez clicks on Incrementar articulo (completed)" width="2560"/>
-                <img src="de0801304fe08f33fbd3ca58a47126c33a01e5307f02a20309c5bf50db676b45.png" title=" Juan david lopez increase items (completed)" width="2560"/>
-                <img src="de0801304fe08f33fbd3ca58a47126c33a01e5307f02a20309c5bf50db676b45.png" title=" Juan david lopez add warranty" width="2560"/>
-                <img src="3d8043068e30c78946e29fcb0a402d27114a5ddf793a0f93cec35c7432ca79b7.png" title=" Juan David Lopez clicks on Incluir garantia" width="2560"/>
-                <img src="0bab1f2c2ca993d4a6a273d60cb983490d57b89078213a552943dac578a28fa3.png" title=" Juan David Lopez clicks on Incluir garantia (completed)" width="2560"/>
-                <img src="0bab1f2c2ca993d4a6a273d60cb983490d57b89078213a552943dac578a28fa3.png" title=" Juan david lopez add warranty (completed)" width="2560"/>
-                <img src="0bab1f2c2ca993d4a6a273d60cb983490d57b89078213a552943dac578a28fa3.png" title=" Juan david lopez go payment" width="2560"/>
-                <img src="567832b992d4f03fbbf5a23f7d7edab0d02a1b24cc5ed2694a1636da47c5ce4c.png" title=" Juan David Lopez clicks on Ir a comprar" width="2560"/>
-                <img src="673eebf0ddb4275de868c332456e44557b46d0b6bab2ac77f42cf0c81a890180.png" title=" Juan David Lopez clicks on Ir a comprar" width="2560"/>
-                <img src="00aa97888dc3a24c12cadf83f694e65183c8af843b1eec3364ec5ccbc12a4057.png" title=" Juan David Lopez clicks on Ir a comprar (completed)" width="2560"/>
-                <img src="00aa97888dc3a24c12cadf83f694e65183c8af843b1eec3364ec5ccbc12a4057.png" title=" Juan david lopez go payment (completed)" width="2560"/>
-                <img src="00aa97888dc3a24c12cadf83f694e65183c8af843b1eec3364ec5ccbc12a4057.png" title=" When Solicita la compra del articulo: &quot;Televisor JVC 50 Pulgadas LED 4K HDR Smart TV&quot; en la tienda de &quot;Falabella&quot; (completed)" width="2560"/>
-                <img src="b4342297411b72a1aed205e49f63f0093d9782ae56d0e4f00f29e421cf1441e6.png" title=" Then Validara el resumen de su compra" width="2560"/>
-                <img src="b4342297411b72a1aed205e49f63f0093d9782ae56d0e4f00f29e421cf1441e6.png" title=" Then El precio es:  should be '$2.999.800'" width="2560"/>
-                <img src="b4342297411b72a1aed205e49f63f0093d9782ae56d0e4f00f29e421cf1441e6.png" title=" Then El producto seleccionado es:  should be 'Televisor JVC 50 Pulgadas LED 4K HDR Sma'" width="2560"/>
-                <img src="36ea51cead41d78977bf7ab25bb82e5c99e85958e298f5f7eeffa1b59cfa69fb.png" title=" Then El producto seleccionado es:  should be 'Televisor JVC 50 Pulgadas LED 4K HDR Sma' (completed)" width="2560"/>
-                <img src="36ea51cead41d78977bf7ab25bb82e5c99e85958e298f5f7eeffa1b59cfa69fb.png" title=" Then Validara el resumen de su compra (completed): <span class='success-color'>SUCCESS</span>" width="2560"/>
+                <img src="524c62b8c49ad7f838c1740fc1c2f1c8e2bb75ca88f4fd3459cab72c1ecdaa31.png" title=" Juan David Lopez enters 'Falabella' then hits [ENTER] into Buscar (completed)" width="2560"/>
+                <img src="765e53d2832a106af48ae83b69e5fea0e8f435382225c81ef31edb1436bc6261.png" title=" Juan David Lopez clicks on Url sitio de falabella" width="2560"/>
+                <img src="b5a28a70add6235dbb647b56b72394af2931fdc968c482ac214e3bd15de12e63.png" title=" Juan David Lopez clicks on Url sitio de falabella (completed)" width="2560"/>
+                <img src="b5a28a70add6235dbb647b56b72394af2931fdc968c482ac214e3bd15de12e63.png" title=" Juan david lopez search falabella (completed)" width="2560"/>
+                <img src="b5a28a70add6235dbb647b56b72394af2931fdc968c482ac214e3bd15de12e63.png" title=" Juan david lopez search article" width="2560"/>
+                <img src="b5a28a70add6235dbb647b56b72394af2931fdc968c482ac214e3bd15de12e63.png" title=" Juan David Lopez enters 'Televisor JVC 50 Pulgadas LED 4K HDR Smart TV' then hits [ENTER] into Que buscas: <span class='error-color'>ERROR</span>" width="2560"/>
             </div>
         </div>
 
