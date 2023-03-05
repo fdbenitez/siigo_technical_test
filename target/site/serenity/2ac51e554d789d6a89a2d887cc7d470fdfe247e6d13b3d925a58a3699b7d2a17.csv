@@ -1,0 +1,6 @@
+"Story","Title","Result","Date","Stability","Duration (s)"
+"CRUD Regresin","Consultar una pagina de usuarios","SUCCESS","2023-03-05T04:57:10.739386-05:00[America/Bogota]","0.0","2.72"
+"CRUD Regresin","Crear usuario aleatoriamente","SUCCESS","2023-03-05T04:57:15.8488619-05:00[America/Bogota]","0.0","0.63"
+"CRUD Regresin","Actualizar usuario aleatoriamente","SUCCESS","2023-03-05T04:57:16.4867356-05:00[America/Bogota]","0.0","0.53"
+"CRUD Regresin","Actualizar usuario aleatoriamente con metodo patch","SUCCESS","2023-03-05T04:57:17.0210795-05:00[America/Bogota]","0.0","0.53"
+"CRUD Regresin","Eliminar usuario aleatoriamente","SUCCESS","2023-03-05T04:57:17.5588342-05:00[America/Bogota]","0.0","0.52"

@@ -1,0 +1,6 @@
+"Story","Title","Result","Date","Stability","Duration (s)"
+"CRUD Regresin","Consultar un usuario aleatoriamente","SUCCESS","2023-03-05T04:57:13.4655079-05:00[America/Bogota]","0.0","0.54"
+"CRUD Regresin","Resultados de la consulta no encontrados","SUCCESS","2023-03-05T04:57:14.0096078-05:00[America/Bogota]","0.0","0.51"
+"CRUD Regresin","Consultar lista de recursos","SUCCESS","2023-03-05T04:57:14.5258575-05:00[America/Bogota]","0.0","0.29"
+"CRUD Regresin","Consultar un recurso aleatoriamente","SUCCESS","2023-03-05T04:57:14.8150405-05:00[America/Bogota]","0.0","0.52"
+"CRUD Regresin","Resultados de la consulta de recursos no encontrados","SUCCESS","2023-03-05T04:57:15.3384863-05:00[America/Bogota]","0.0","0.51"
