@@ -17,12 +17,16 @@ public class Constants {
     public static final String PRODUCT = "product";
     public static final String VALIDATE_PRICE = "El precio es: ";
     public static final String VALIDATE_PRODUCT = "El producto seleccionado es: ";
-    public static final String DRIVER_CHROME = "chrome";
-    public static final String DRIVER_FIREFOX = "firefox";
+    public static final String VALIDATE_PAGE = "Validar page";
+    public static final String VALIDATE_STATUS_CODE = "Validar statusCode";
+    public static final String VALIDATE_SUCCEEDED = "Validación exitosa";
+    public static final String CONTENT_TYPE = "application/json";
+    public static final String PAGE = "page";
     private static final SystemPropertiesConfiguration CONFIGURATION = new SystemPropertiesConfiguration(SystemEnvironmentVariables.createEnvironmentVariables());
     private static final EnvironmentVariables environmentVariables = CONFIGURATION.getEnvironmentVariables();
     private static final String CONFIG_PATH = Paths.get(new File("").getAbsolutePath(), "src", "test", "resources").toString();
     public static final String USERS_PATH = Paths.get(CONFIG_PATH, EnvironmentSpecificConfiguration.from(environmentVariables).getProperty("users.file")).toString();
 
     public static final String BASE_URL = EnvironmentSpecificConfiguration.from(environmentVariables).getProperty("base.url");
+    public static final String BASE_URL_API = EnvironmentSpecificConfiguration.from(environmentVariables).getProperty("baseapi.url");
 }

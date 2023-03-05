@@ -13,6 +13,10 @@ public class RandomDataHelper {
         return (randomNumber.nextInt(3) + 1);
     }
 
+    public static int pageRandom() {
+        return (randomNumber.nextInt(1)+1);
+    }
+
 
 }
 

@@ -1,7 +1,7 @@
 package com.siigo.automation.stepdefinitions.falabella;
 
 import com.siigo.automation.model.models.client.Client;
-import com.siigo.automation.screenplay.task.*;
+import com.siigo.automation.screenplay.task.falabella.*;
 import com.siigo.automation.utils.SessionHelper;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
