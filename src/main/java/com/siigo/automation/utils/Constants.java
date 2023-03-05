@@ -13,10 +13,12 @@ public class Constants {
         super();
     }
     public static final int SUCCESS_CODE = 200;
-    public static final String SUCCEEDED = "succeeded";
-    public static final String VALIDATE_STATUS_CODE = "Validate statusCode";
-    public static final String VALIDATE_SUCCEEDED = "Validate succeeded";
-    public static final String VALIDATE_SUCCESS_FULL = "Validación exitosa";
+    public static final String SUBTOTAL_VALUE = "subtotal";
+    public static final String PRODUCT = "product";
+    public static final String VALIDATE_PRICE = "El precio es: ";
+    public static final String VALIDATE_PRODUCT = "El producto seleccionado es: ";
+    public static final String DRIVER_CHROME = "chrome";
+    public static final String DRIVER_FIREFOX = "firefox";
     private static final SystemPropertiesConfiguration CONFIGURATION = new SystemPropertiesConfiguration(SystemEnvironmentVariables.createEnvironmentVariables());
     private static final EnvironmentVariables environmentVariables = CONFIGURATION.getEnvironmentVariables();
     private static final String CONFIG_PATH = Paths.get(new File("").getAbsolutePath(), "src", "test", "resources").toString();

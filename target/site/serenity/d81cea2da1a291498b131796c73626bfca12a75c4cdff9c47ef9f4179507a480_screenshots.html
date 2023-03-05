@@ -1,0 +1,277 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Screenshots</title>
+
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+<link rel="apple-touch-icon" sizes="57x57" href="apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<link rel="stylesheet" href="bootstrap-icons/bootstrap-icons.css">
+<!-- JQuery -->
+<script type="text/javascript" src="scripts/jquery-1.11.1.min.js"></script><!-- Required Stylesheets -->
+<link href="bootstrap-treeview/dist/bootstrap-treeview.min.css" rel="stylesheet">
+
+<!-- Required Javascript -->
+<script src="bootstrap-treeview/dist/bootstrap-treeview.min.js"></script><!-- DataTables -->
+<link type="text/css" href="datatables/1.13.1/datatables.min.css" rel="stylesheet" />
+<script type="text/javascript" src="datatables/1.13.1/datatables.min.js"></script>
+<script type="text/javascript" src="datatables/1.13.1/time-elapsed-dhms.js"></script>
+
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="bootstrap/js/bootstrap.min.js"></script>
+
+
+<script>
+    jQuery.fn.dataTable.ext.type.order['time-elapsed-dhms-pre'] = function(data) {
+
+        var matches = data.match(/^(\d+(?:\.\d+)?)\s*([a-z]+)/i);
+        var multipliers = {
+            ms: 1,
+            s: 1000,
+            m: 60000,
+            h: 3600000,
+            d: 86400000
+        };
+
+        if (matches) {
+            var multiplier = multipliers[matches[2].toLowerCase()];
+            return parseFloat(matches[1]) * multiplier;
+        } else {
+            return -1;
+        };
+    };
+</script>
+<link rel="stylesheet" href="css/core.css"/>
+<link rel="stylesheet" href="css/link.css"/>
+<link type="text/css" media="screen" href="css/screen.css" rel="Stylesheet"/>
+<!--CHART.JS-->
+<script src="chartjs/chart.js"></script>
+<script src="chartjs/chartjs-plugin-datalabels@2.0.0"></script>
+<script src="chartjs/patternomaly.min.js"></script>
+<script>
+    // Register the plugin to all charts:
+    Chart.register(ChartDataLabels);
+</script>
+<!-- Nivo Slider -->
+<link rel="stylesheet" href="nivo-slider/3.2/nivo-slider.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="nivo-slider/3.2/themes/default/default.css" type="text/css" media="screen" />
+<script src="nivo-slider/3.2/jquery.nivo.slider.pack.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+
+        function getUrlVars() {
+            var vars = {};
+            var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+                vars[key] = value;
+            });
+            return vars;
+        }
+
+        var screenshotIndex = getUrlVars()["screenshot"];
+
+        $(window).load(function () {
+            $('#slider').nivoSlider({
+                startSlide: screenshotIndex,
+                effect: 'fade',
+                animSpeed: 200,
+                manualAdvance: true
+            });
+        });
+
+        $(window).keydown(function(e) {
+            switch(e.which) {
+                case 37:
+                    $('a.nivo-prevNav').click();
+                    break;
+                case 39:
+                    $('a.nivo-nextNav').click();
+                    break;
+            }
+        });
+    </script>
+
+</head>
+
+<body>
+<div id="topheader">
+    <div id="topbanner">
+        <div id="logo"><a href="index.html"><img src="images/serenity-logo.png" border="0"/></a></div>
+        <div id="projectname-banner" style="float:right">
+            <span class="projectname">
+                <span class="projecttitle">Siigo prueba tecnica</span>
+                <span class="projectsubtitle"></span>
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="middlecontent">
+    <div id="contenttop">
+        <div class="middlebg">
+            <span class="breadcrumbs">
+                <a href="index.html">Home</a>
+                > <span class="truncate-40"><a
+                    href="cb2d2e25dc637456c341c3df9c34927758369812d4eb21b4882dd0be720e40b6.html">Cliente Falabella</a></span>
+                > <span class="truncate-60"><a
+                    href="d81cea2da1a291498b131796c73626bfca12a75c4cdff9c47ef9f4179507a480.html">Compra de un articulo con garantia extendida en firefox </a></span>
+                > Screenshots
+            </span>
+        </div>
+        <div class="rightbg"></div>
+    </div>
+
+    <div class="clr"></div>
+
+    <!--/* starts second table*/-->
+<div>
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#"><i class="bi bi-journal-check"></i> Overall Test Results</a>
+        </li>
+        <li >
+            <a href="capabilities.html"><i class="bi bi-journal-text"></i> Requirements</a>
+        </li>
+    </ul>
+    <span class="date-and-time"><a href="build-info.html"><i class="bi bi-info-circle"></i></a> Report generated 05-03-2023 00:56</span>
+    <br style="clear:left"/>
+</div>
+
+    <div class="clr"></div>
+
+
+    <div id="contentbody">
+        <div class="titlebar">
+            <div class="story-title">
+                <table class="outcome-header">
+                    <tr>
+                        <td>
+                            <div>
+                                <h3 class="discreet-story-header">
+                                    <i class="fs-2 bi bi-chat-left-quote large-icon"></i>
+                                    <span class="story-header-title">Cliente Falabella</span>
+                                    <span class="badge tag-badge" style="">Feature</span>
+                                </h3>
+
+                                <div class="discreet-requirement-narrative-title">
+                                Compra de un artículo con garantía extendida en el e-commerce de falabella
+                                </div>
+                            </div>
+
+                        </td>
+                        <td valign="top" align="right">
+                            <p class="tag">
+                                <span class="badge tag-badge" style="background:default;"
+                                    <i class="bi bi-tag-fill"></i>&nbsp;<a class="tagLink" style="background:default;" href="c08a9b5ad819f7e97d70a7fbc0edea3ad2e776f26d7d8805df191223c19ee1ef.html">Fallabella
+                                    (tag)</a>
+                                </span>
+                            </p>
+                            <p class="tag">
+                                <span class="badge tag-badge" style="background:default;"
+                                    <i class="bi bi-tag-fill"></i>&nbsp;<a class="tagLink" style="background:default;" href="0dc2f3e9ec1b7561fca1d53298813c03a10ab22544f4a1a6a0c72ded7d37a5cd.html">Buy Article Firefox
+                                    (tag)</a>
+                                </span>
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="story-title">
+                <table class="outcome-header">
+                    <tr>
+                        <td colspan="2" class="test-title-bar">
+                            <span class="outcome-icon"><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon fa-2x' title='SUCCESS'></i></a></span>
+                            <span class="test-case-title">
+                                <span class="success-color">Compra de un articulo con garantia extendida en firefox
+                                    <span class="related-issue-title"></span>
+                                </span>
+                            </span>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="clr"></div>
+
+
+    <div id="beforetable"></div>
+    <div id="contenttilttle">
+        <div class="slider-wrapper theme-default">
+            <div id="slider">
+                <img src="7220659799343aa017d5c34b12b1fa60b058807b8bd7d8e34fdaf4c8846e46fe.png" title=" Given Que &quot;Juan&quot; es un usuario que navega a la pagina web de google en su navegador firefox" width="2560"/>
+                <img src="7220659799343aa017d5c34b12b1fa60b058807b8bd7d8e34fdaf4c8846e46fe.png" title=" Juan David Lopez opens the browser at https://google.com" width="2560"/>
+                <img src="7220659799343aa017d5c34b12b1fa60b058807b8bd7d8e34fdaf4c8846e46fe.png" title=" Given Que &quot;Juan&quot; es un usuario que navega a la pagina web de google en su navegador firefox (completed)" width="2560"/>
+                <img src="de290bceca3276a33a7b28bca0b928b9d4a2d480750219415263a1a34f80d13f.png" title=" When Solicita la compra del articulo: &quot;Televisor JVC 50 Pulgadas LED 4K HDR Smart TV&quot; en la tienda de &quot;Falabella&quot;" width="2560"/>
+                <img src="de290bceca3276a33a7b28bca0b928b9d4a2d480750219415263a1a34f80d13f.png" title=" Juan david lopez search falabella" width="2560"/>
+                <img src="de290bceca3276a33a7b28bca0b928b9d4a2d480750219415263a1a34f80d13f.png" title=" Juan David Lopez enters 'Falabella' then hits [ENTER] into Buscar" width="2560"/>
+                <img src="cbe8a3fd92e512450bc9e36440d7be0c5f851d040b33e2ef7f8ca58b1e1d80f9.png" title=" Juan David Lopez enters 'Falabella' then hits [ENTER] into Buscar (completed)" width="2560"/>
+                <img src="1f8dac4980ce112ad50991f4849dec18b9c7bb2a01a5deba76923ab9ea4a2541.png" title=" Juan David Lopez clicks on Url sitio de falabella" width="2560"/>
+                <img src="c615103d5c8633c2a53ee841cb78e3f00cdff388ec2f81f8bfcad0ad1f4d0e60.png" title=" Juan David Lopez clicks on Url sitio de falabella" width="2560"/>
+                <img src="30854a63a4e696579d3cac03add1867d02dcf87441bd6019d9909be7518812aa.png" title=" Juan David Lopez clicks on Url sitio de falabella (completed)" width="2560"/>
+                <img src="30854a63a4e696579d3cac03add1867d02dcf87441bd6019d9909be7518812aa.png" title=" Juan david lopez search falabella (completed)" width="2560"/>
+                <img src="30854a63a4e696579d3cac03add1867d02dcf87441bd6019d9909be7518812aa.png" title=" Juan david lopez search article" width="2560"/>
+                <img src="30854a63a4e696579d3cac03add1867d02dcf87441bd6019d9909be7518812aa.png" title=" Juan David Lopez enters 'Televisor JVC 50 Pulgadas LED 4K HDR Smart TV' then hits [ENTER] into Que buscas" width="2560"/>
+                <img src="fa7e68240f5fcf60b61d628a5cb19c7441e1af57ccfff34709b0053ba43d3c6d.png" title=" Juan David Lopez enters 'Televisor JVC 50 Pulgadas LED 4K HDR Smart TV' then hits [ENTER] into Que buscas" width="2560"/>
+                <img src="d6aefbafc3409d1324fe3df2c0b5f33be59a0fa31b02465b20542c9917cf4606.png" title=" Juan David Lopez enters 'Televisor JVC 50 Pulgadas LED 4K HDR Smart TV' then hits [ENTER] into Que buscas (completed)" width="2560"/>
+                <img src="d6aefbafc3409d1324fe3df2c0b5f33be59a0fa31b02465b20542c9917cf4606.png" title=" Juan david lopez search article (completed)" width="2560"/>
+                <img src="d6aefbafc3409d1324fe3df2c0b5f33be59a0fa31b02465b20542c9917cf4606.png" title=" Juan david lopez add items to" width="2560"/>
+                <img src="cf5d9013edef2e703cd76b6fead767f3576add7bde2fc3dab399fe4e21012070.png" title=" Juan David Lopez clicks on Item" width="2560"/>
+                <img src="3f290b6c5d2f5217c6d7de93f1bbd64b36a648013875e09c2b426b55203320da.png" title=" Juan David Lopez clicks on Item (completed)" width="2560"/>
+                <img src="3f290b6c5d2f5217c6d7de93f1bbd64b36a648013875e09c2b426b55203320da.png" title=" Juan David Lopez clicks on Agregar a la bolsa" width="2560"/>
+                <img src="4b180cd11e6d0c5bdbdc2b3572486fa41e487a0cab6dcb045d5398bd10c2cd4c.png" title=" Juan David Lopez clicks on Agregar a la bolsa" width="2560"/>
+                <img src="7926166142801fb187a5536918f09064ea7657e45c7b08c4a28685595f10bf88.png" title=" Juan David Lopez clicks on Agregar a la bolsa (completed)" width="2560"/>
+                <img src="7926166142801fb187a5536918f09064ea7657e45c7b08c4a28685595f10bf88.png" title=" Juan david lopez add items to (completed)" width="2560"/>
+                <img src="7926166142801fb187a5536918f09064ea7657e45c7b08c4a28685595f10bf88.png" title=" Juan david lopez increase items" width="2560"/>
+                <img src="07a9ddd4b6abacc144f7cdb9d27e59f7bc5a30dff36a1645dcb4be99337ceec2.png" title=" Juan David Lopez clicks on Ver bolsa de compras" width="2560"/>
+                <img src="4d5797ef7d272927b7ed83f76417e5d1c8468af6d217bc9d24c1669bf9e7d29e.png" title=" Juan David Lopez clicks on Ver bolsa de compras" width="2560"/>
+                <img src="eba3e9d39ab02b1cbeecbc8e1ec23042877eef3d037565a531c01cbaf6ff546f.png" title=" Juan David Lopez clicks on Ver bolsa de compras (completed)" width="2560"/>
+                <img src="eba3e9d39ab02b1cbeecbc8e1ec23042877eef3d037565a531c01cbaf6ff546f.png" title=" Juan David Lopez clicks on Incrementar articulo" width="2560"/>
+                <img src="c63bd982c7f1eedff1f6b343ab4b5e9ac563b3734022a9d46611ed795c86d664.png" title=" Juan David Lopez clicks on Incrementar articulo" width="2560"/>
+                <img src="de0801304fe08f33fbd3ca58a47126c33a01e5307f02a20309c5bf50db676b45.png" title=" Juan David Lopez clicks on Incrementar articulo (completed)" width="2560"/>
+                <img src="de0801304fe08f33fbd3ca58a47126c33a01e5307f02a20309c5bf50db676b45.png" title=" Juan david lopez increase items (completed)" width="2560"/>
+                <img src="de0801304fe08f33fbd3ca58a47126c33a01e5307f02a20309c5bf50db676b45.png" title=" Juan david lopez add warranty" width="2560"/>
+                <img src="3d8043068e30c78946e29fcb0a402d27114a5ddf793a0f93cec35c7432ca79b7.png" title=" Juan David Lopez clicks on Incluir garantia" width="2560"/>
+                <img src="0bab1f2c2ca993d4a6a273d60cb983490d57b89078213a552943dac578a28fa3.png" title=" Juan David Lopez clicks on Incluir garantia (completed)" width="2560"/>
+                <img src="0bab1f2c2ca993d4a6a273d60cb983490d57b89078213a552943dac578a28fa3.png" title=" Juan david lopez add warranty (completed)" width="2560"/>
+                <img src="0bab1f2c2ca993d4a6a273d60cb983490d57b89078213a552943dac578a28fa3.png" title=" Juan david lopez go payment" width="2560"/>
+                <img src="567832b992d4f03fbbf5a23f7d7edab0d02a1b24cc5ed2694a1636da47c5ce4c.png" title=" Juan David Lopez clicks on Ir a comprar" width="2560"/>
+                <img src="2672c5286b9da24e68f7670fa5147da6df2b9be0f53909bc450a45e10f9a92fd.png" title=" Juan David Lopez clicks on Ir a comprar" width="2560"/>
+                <img src="00aa97888dc3a24c12cadf83f694e65183c8af843b1eec3364ec5ccbc12a4057.png" title=" Juan David Lopez clicks on Ir a comprar (completed)" width="2560"/>
+                <img src="00aa97888dc3a24c12cadf83f694e65183c8af843b1eec3364ec5ccbc12a4057.png" title=" Juan david lopez go payment (completed)" width="2560"/>
+                <img src="00aa97888dc3a24c12cadf83f694e65183c8af843b1eec3364ec5ccbc12a4057.png" title=" When Solicita la compra del articulo: &quot;Televisor JVC 50 Pulgadas LED 4K HDR Smart TV&quot; en la tienda de &quot;Falabella&quot; (completed)" width="2560"/>
+                <img src="b4342297411b72a1aed205e49f63f0093d9782ae56d0e4f00f29e421cf1441e6.png" title=" Then Validara el resumen de su compra" width="2560"/>
+                <img src="b4342297411b72a1aed205e49f63f0093d9782ae56d0e4f00f29e421cf1441e6.png" title=" Then El precio es:  should be '$2.999.800'" width="2560"/>
+                <img src="b4342297411b72a1aed205e49f63f0093d9782ae56d0e4f00f29e421cf1441e6.png" title=" Then El producto seleccionado es:  should be 'Televisor JVC 50 Pulgadas LED 4K HDR Sma'" width="2560"/>
+                <img src="36ea51cead41d78977bf7ab25bb82e5c99e85958e298f5f7eeffa1b59cfa69fb.png" title=" Then El producto seleccionado es:  should be 'Televisor JVC 50 Pulgadas LED 4K HDR Sma' (completed)" width="2560"/>
+                <img src="36ea51cead41d78977bf7ab25bb82e5c99e85958e298f5f7eeffa1b59cfa69fb.png" title=" Then Validara el resumen de su compra (completed): <span class='success-color'>SUCCESS</span>" width="2560"/>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<div id="beforefooter"></div>
+<div id="bottomfooter">
+    <span class="version">Serenity BDD version 3.6.12</span>
+</div>
+</body>
+</html>
