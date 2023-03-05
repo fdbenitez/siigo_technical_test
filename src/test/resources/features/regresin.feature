@@ -39,3 +39,27 @@ Feature: CRUD Regresin
     Given Que "Juan" es un usuario de las apis de regresin
     When consulte un id de recurso no registrado
     Then no se encuentran resultados en la busqueda
+
+  @PostRequest
+  Scenario: Crear usuario aleatoriamente
+    Given Que "Fray" es un usuario de las apis de regresin
+    When solicite la creacion del usuario
+    Then el servicio responde con los datos de usuario creado
+
+  @PutRequest
+  Scenario: Actualizar usuario aleatoriamente
+    Given Que "Fray" es un usuario de las apis de regresin
+    When solicite la actualizacion del usuario
+    Then el servicio responde con los datos de usuario actualizado
+
+  @PatchRequest
+  Scenario: Actualizar usuario aleatoriamente con metodo patch
+    Given Que "Fray" es un usuario de las apis de regresin
+    When solicite la actualizacion del usuario a traves del metodo patch
+    Then el servicio responde con los datos de usuario actualizado
+
+  @DeleteRequest
+  Scenario: Eliminar usuario aleatoriamente
+    Given Que "Fray" es un usuario de las apis de regresin
+    When solicite la eliminacion del usuario
+    Then el servicio elimina los datos de usuario

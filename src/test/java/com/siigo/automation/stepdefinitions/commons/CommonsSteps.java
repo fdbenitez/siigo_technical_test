@@ -3,7 +3,10 @@ package com.siigo.automation.stepdefinitions.commons;
 import com.siigo.automation.model.models.client.Client;
 import com.siigo.automation.screenplay.questions.falabella.ValidatePrice;
 import com.siigo.automation.screenplay.questions.falabella.ValidateProduct;
+import com.siigo.automation.screenplay.questions.regresin.DeleteUser;
 import com.siigo.automation.screenplay.questions.regresin.ResourceNotFound;
+import com.siigo.automation.screenplay.questions.regresin.ValidatePostUsers;
+import com.siigo.automation.screenplay.questions.regresin.ValidatePutUsers;
 import com.siigo.automation.utils.SessionHelper;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -45,6 +48,24 @@ public class CommonsSteps {
     @Then("no se encuentran resultados en la busqueda")
     public void noSeEncuentranResultadosEnLaBusqueda() {
         theActorInTheSpotlight().asksFor(ResourceNotFound.validate());
+
+    }
+
+    @Then("el servicio responde con los datos de usuario creado")
+    public void elServicioRespondeConLosDatosDeUsuarioCreado() {
+        theActorInTheSpotlight().asksFor(ValidatePostUsers.response());
+
+    }
+
+    @Then("el servicio responde con los datos de usuario actualizado")
+    public void elServicioRespondeConLosDatosDeUsuarioActualizado() {
+        theActorInTheSpotlight().asksFor(ValidatePutUsers.response());
+
+    }
+
+    @Then("el servicio elimina los datos de usuario")
+    public void elServicioEliminaLosDatosDeUsuario() {
+        theActorInTheSpotlight().asksFor(DeleteUser.validate());
 
     }
 }
