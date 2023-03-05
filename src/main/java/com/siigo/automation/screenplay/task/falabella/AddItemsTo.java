@@ -7,8 +7,8 @@ import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.matchers.WebElementStateMatchers;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 
-import static com.siigo.automation.screenplay.ui.FalabellaHomePage.ITEM;
-import static com.siigo.automation.screenplay.ui.ProductPage.CART;
+import static com.siigo.automation.screenplay.ui.web.FalabellaHomePage.ITEM;
+import static com.siigo.automation.screenplay.ui.web.ProductPage.CART;
 
 public class AddItemsTo implements Task {
 

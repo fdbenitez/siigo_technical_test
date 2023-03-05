@@ -1,0 +1,822 @@
+<html lang='en'><head><link href='prism/prism.css' rel='stylesheet' /></head><body><script src='prism/prism.js'></script><body><div><pre><code class='language-html'>&lt;html lang="en" class="plt-android plt-phablet plt-cordova plt-capacitor plt-desktop plt-hybrid md hydrated" mode="md"&gt;<br/>
+ &lt;head&gt; <br/>
+  &lt;script type="text/javascript"&gt;window.Capacitor = { DEBUG: true, isLoggingEnabled: true, Plugins: {} };<br/>
+<br/>
+window.WEBVIEW_SERVER_URL = 'http://localhost';<br/>
+<br/>
+<br/>
+/*! Capacitor: https://capacitorjs.com/ - MIT License */<br/>
+/* Generated File. Do not edit. */<br/>
+<br/>
+const nativeBridge = (function (exports) {<br/>
+    'use strict';<br/>
+<br/>
+    // For removing exports for iOS/Android, keep let for reassignment<br/>
+    // eslint-disable-next-line<br/>
+    let dummy = {};<br/>
+    const initBridge = (w) =&gt; {<br/>
+        const getPlatformId = (win) =&gt; {<br/>
+            var _a, _b;<br/>
+            if (win === null || win === void 0 ? void 0 : win.androidBridge) {<br/>
+                return 'android';<br/>
+            }<br/>
+            else if ((_b = (_a = win === null || win === void 0 ? void 0 : win.webkit) === null || _a === void 0 ? void 0 : _a.messageHandlers) === null || _b === void 0 ? void 0 : _b.bridge) {<br/>
+                return 'ios';<br/>
+            }<br/>
+            else {<br/>
+                return 'web';<br/>
+            }<br/>
+        };<br/>
+        const convertFileSrcServerUrl = (webviewServerUrl, filePath) =&gt; {<br/>
+            if (typeof filePath === 'string') {<br/>
+                if (filePath.startsWith('/')) {<br/>
+                    return webviewServerUrl + '/_capacitor_file_' + filePath;<br/>
+                }<br/>
+                else if (filePath.startsWith('file://')) {<br/>
+                    return (webviewServerUrl + filePath.replace('file://', '/_capacitor_file_'));<br/>
+                }<br/>
+                else if (filePath.startsWith('content://')) {<br/>
+                    return (webviewServerUrl +<br/>
+                        filePath.replace('content:/', '/_capacitor_content_'));<br/>
+                }<br/>
+            }<br/>
+            return filePath;<br/>
+        };<br/>
+        const initEvents = (win, cap) =&gt; {<br/>
+            cap.addListener = (pluginName, eventName, callback) =&gt; {<br/>
+                const callbackId = cap.nativeCallback(pluginName, 'addListener', {<br/>
+                    eventName: eventName,<br/>
+                }, callback);<br/>
+                return {<br/>
+                    remove: async () =&gt; {<br/>
+                        var _a;<br/>
+                        (_a = win === null || win === void 0 ? void 0 : win.console) === null || _a === void 0 ? void 0 : _a.debug('Removing listener', pluginName, eventName);<br/>
+                        cap.removeListener(pluginName, callbackId, eventName, callback);<br/>
+                    },<br/>
+                };<br/>
+            };<br/>
+            cap.removeListener = (pluginName, callbackId, eventName, callback) =&gt; {<br/>
+                cap.nativeCallback(pluginName, 'removeListener', {<br/>
+                    callbackId: callbackId,<br/>
+                    eventName: eventName,<br/>
+                }, callback);<br/>
+            };<br/>
+            cap.createEvent = (eventName, eventData) =&gt; {<br/>
+                const doc = win.document;<br/>
+                if (doc) {<br/>
+                    const ev = doc.createEvent('Events');<br/>
+                    ev.initEvent(eventName, false, false);<br/>
+                    if (eventData && typeof eventData === 'object') {<br/>
+                        for (const i in eventData) {<br/>
+                            // eslint-disable-next-line no-prototype-builtins<br/>
+                            if (eventData.hasOwnProperty(i)) {<br/>
+                                ev[i] = eventData[i];<br/>
+                            }<br/>
+                        }<br/>
+                    }<br/>
+                    return ev;<br/>
+                }<br/>
+                return null;<br/>
+            };<br/>
+            cap.triggerEvent = (eventName, target, eventData) =&gt; {<br/>
+                const doc = win.document;<br/>
+                const cordova = win.cordova;<br/>
+                eventData = eventData || {};<br/>
+                const ev = cap.createEvent(eventName, eventData);<br/>
+                if (ev) {<br/>
+                    if (target === 'document') {<br/>
+                        if (cordova === null || cordova === void 0 ? void 0 : cordova.fireDocumentEvent) {<br/>
+                            cordova.fireDocumentEvent(eventName, eventData);<br/>
+                            return true;<br/>
+                        }<br/>
+                        else if (doc === null || doc === void 0 ? void 0 : doc.dispatchEvent) {<br/>
+                            return doc.dispatchEvent(ev);<br/>
+                        }<br/>
+                    }<br/>
+                    else if (target === 'window' && win.dispatchEvent) {<br/>
+                        return win.dispatchEvent(ev);<br/>
+                    }<br/>
+                    else if (doc === null || doc === void 0 ? void 0 : doc.querySelector) {<br/>
+                        const targetEl = doc.querySelector(target);<br/>
+                        if (targetEl) {<br/>
+                            return targetEl.dispatchEvent(ev);<br/>
+                        }<br/>
+                    }<br/>
+                }<br/>
+                return false;<br/>
+            };<br/>
+            win.Capacitor = cap;<br/>
+        };<br/>
+        const initLegacyHandlers = (win, cap) =&gt; {<br/>
+            // define cordova if it's not there already<br/>
+            win.cordova = win.cordova || {};<br/>
+            const doc = win.document;<br/>
+            const nav = win.navigator;<br/>
+            if (nav) {<br/>
+                nav.app = nav.app || {};<br/>
+                nav.app.exitApp = () =&gt; {<br/>
+                    if (!cap.Plugins || !cap.Plugins.App) {<br/>
+                        win.console.warn('App plugin not installed');<br/>
+                    }<br/>
+                    else {<br/>
+                        cap.nativeCallback('App', 'exitApp', {});<br/>
+                    }<br/>
+                };<br/>
+            }<br/>
+            if (doc) {<br/>
+                const docAddEventListener = doc.addEventListener;<br/>
+                doc.addEventListener = (...args) =&gt; {<br/>
+                    const eventName = args[0];<br/>
+                    const handler = args[1];<br/>
+                    if (eventName === 'deviceready' && handler) {<br/>
+                        Promise.resolve().then(handler);<br/>
+                    }<br/>
+                    else if (eventName === 'backbutton' && cap.Plugins.App) {<br/>
+                        // Add a dummy listener so Capacitor doesn't do the default<br/>
+                        // back button action<br/>
+                        if (!cap.Plugins || !cap.Plugins.App) {<br/>
+                            win.console.warn('App plugin not installed');<br/>
+                        }<br/>
+                        else {<br/>
+                            cap.Plugins.App.addListener('backButton', () =&gt; {<br/>
+                                // ignore<br/>
+                            });<br/>
+                        }<br/>
+                    }<br/>
+                    return docAddEventListener.apply(doc, args);<br/>
+                };<br/>
+            }<br/>
+            // deprecated in v3, remove from v4<br/>
+            cap.platform = cap.getPlatform();<br/>
+            cap.isNative = cap.isNativePlatform();<br/>
+            win.Capacitor = cap;<br/>
+        };<br/>
+        const initVendor = (win, cap) =&gt; {<br/>
+            const Ionic = (win.Ionic = win.Ionic || {});<br/>
+            const IonicWebView = (Ionic.WebView = Ionic.WebView || {});<br/>
+            const Plugins = cap.Plugins;<br/>
+            IonicWebView.getServerBasePath = (callback) =&gt; {<br/>
+                var _a;<br/>
+                (_a = Plugins === null || Plugins === void 0 ? void 0 : Plugins.WebView) === null || _a === void 0 ? void 0 : _a.getServerBasePath().then((result) =&gt; {<br/>
+                    callback(result.path);<br/>
+                });<br/>
+            };<br/>
+            IonicWebView.setServerBasePath = (path) =&gt; {<br/>
+                var _a;<br/>
+                (_a = Plugins === null || Plugins === void 0 ? void 0 : Plugins.WebView) === null || _a === void 0 ? void 0 : _a.setServerBasePath({ path });<br/>
+            };<br/>
+            IonicWebView.persistServerBasePath = () =&gt; {<br/>
+                var _a;<br/>
+                (_a = Plugins === null || Plugins === void 0 ? void 0 : Plugins.WebView) === null || _a === void 0 ? void 0 : _a.persistServerBasePath();<br/>
+            };<br/>
+            IonicWebView.convertFileSrc = (url) =&gt; cap.convertFileSrc(url);<br/>
+            win.Capacitor = cap;<br/>
+            win.Ionic.WebView = IonicWebView;<br/>
+        };<br/>
+        const safeStringify = (value) =&gt; {<br/>
+            const seen = new Set();<br/>
+            return JSON.stringify(value, (_k, v) =&gt; {<br/>
+                if (seen.has(v)) {<br/>
+                    if (v === null)<br/>
+                        return null;<br/>
+                    else<br/>
+                        return '...';<br/>
+                }<br/>
+                if (typeof v === 'object') {<br/>
+                    seen.add(v);<br/>
+                }<br/>
+                return v;<br/>
+            });<br/>
+        };<br/>
+        const initLogger = (win, cap) =&gt; {<br/>
+            const BRIDGED_CONSOLE_METHODS = [<br/>
+                'debug',<br/>
+                'error',<br/>
+                'info',<br/>
+                'log',<br/>
+                'trace',<br/>
+                'warn',<br/>
+            ];<br/>
+            const createLogFromNative = (c) =&gt; (result) =&gt; {<br/>
+                if (isFullConsole(c)) {<br/>
+                    const success = result.success === true;<br/>
+                    const tagStyles = success<br/>
+                        ? 'font-style: italic; font-weight: lighter; color: gray'<br/>
+                        : 'font-style: italic; font-weight: lighter; color: red';<br/>
+                    c.groupCollapsed('%cresult %c' +<br/>
+                        result.pluginId +<br/>
+                        '.' +<br/>
+                        result.methodName +<br/>
+                        ' (#' +<br/>
+                        result.callbackId +<br/>
+                        ')', tagStyles, 'font-style: italic; font-weight: bold; color: #444');<br/>
+                    if (result.success === false) {<br/>
+                        c.error(result.error);<br/>
+                    }<br/>
+                    else {<br/>
+                        c.dir(result.data);<br/>
+                    }<br/>
+                    c.groupEnd();<br/>
+                }<br/>
+                else {<br/>
+                    if (result.success === false) {<br/>
+                        c.error('LOG FROM NATIVE', result.error);<br/>
+                    }<br/>
+                    else {<br/>
+                        c.log('LOG FROM NATIVE', result.data);<br/>
+                    }<br/>
+                }<br/>
+            };<br/>
+            const createLogToNative = (c) =&gt; (call) =&gt; {<br/>
+                if (isFullConsole(c)) {<br/>
+                    c.groupCollapsed('%cnative %c' +<br/>
+                        call.pluginId +<br/>
+                        '.' +<br/>
+                        call.methodName +<br/>
+                        ' (#' +<br/>
+                        call.callbackId +<br/>
+                        ')', 'font-weight: lighter; color: gray', 'font-weight: bold; color: #000');<br/>
+                    c.dir(call);<br/>
+                    c.groupEnd();<br/>
+                }<br/>
+                else {<br/>
+                    c.log('LOG TO NATIVE: ', call);<br/>
+                }<br/>
+            };<br/>
+            const isFullConsole = (c) =&gt; {<br/>
+                if (!c) {<br/>
+                    return false;<br/>
+                }<br/>
+                return (typeof c.groupCollapsed === 'function' ||<br/>
+                    typeof c.groupEnd === 'function' ||<br/>
+                    typeof c.dir === 'function');<br/>
+            };<br/>
+            const serializeConsoleMessage = (msg) =&gt; {<br/>
+                if (typeof msg === 'object') {<br/>
+                    try {<br/>
+                        msg = safeStringify(msg);<br/>
+                    }<br/>
+                    catch (e) {<br/>
+                        // ignore<br/>
+                    }<br/>
+                }<br/>
+                return String(msg);<br/>
+            };<br/>
+            // patch window.console on iOS and store original console fns<br/>
+            const isIos = getPlatformId(win) === 'ios';<br/>
+            const originalConsole = Object.assign({}, win.console);<br/>
+            if (win.console && isIos) {<br/>
+                for (const logfn of BRIDGED_CONSOLE_METHODS) {<br/>
+                    win.console[logfn] = (...args) =&gt; {<br/>
+                        const msgs = [...args];<br/>
+                        originalConsole[logfn](...msgs);<br/>
+                        try {<br/>
+                            cap.toNative('Console', 'log', {<br/>
+                                level: logfn,<br/>
+                                message: msgs.map(serializeConsoleMessage).join(' '),<br/>
+                            });<br/>
+                        }<br/>
+                        catch (e) {<br/>
+                            // error converting/posting console messages<br/>
+                            originalConsole.error(e);<br/>
+                        }<br/>
+                    };<br/>
+                }<br/>
+            }<br/>
+            cap.logJs = (msg, level) =&gt; {<br/>
+                switch (level) {<br/>
+                    case 'error':<br/>
+                        win.console.error(msg);<br/>
+                        break;<br/>
+                    case 'warn':<br/>
+                        win.console.warn(msg);<br/>
+                        break;<br/>
+                    case 'info':<br/>
+                        win.console.info(msg);<br/>
+                        break;<br/>
+                    default:<br/>
+                        win.console.log(msg);<br/>
+                }<br/>
+            };<br/>
+            cap.logToNative = createLogToNative(win.console);<br/>
+            cap.logFromNative = createLogFromNative(win.console);<br/>
+            cap.handleError = err =&gt; win.console.error(err);<br/>
+            win.Capacitor = cap;<br/>
+        };<br/>
+        function initNativeBridge(win) {<br/>
+            const cap = win.Capacitor || {};<br/>
+            // keep a collection of callbacks for native response data<br/>
+            const callbacks = new Map();<br/>
+            const webviewServerUrl = typeof win.WEBVIEW_SERVER_URL === 'string' ? win.WEBVIEW_SERVER_URL : '';<br/>
+            cap.getServerUrl = () =&gt; webviewServerUrl;<br/>
+            cap.convertFileSrc = filePath =&gt; convertFileSrcServerUrl(webviewServerUrl, filePath);<br/>
+            // Counter of callback ids, randomized to avoid<br/>
+            // any issues during reloads if a call comes back with<br/>
+            // an existing callback id from an old session<br/>
+            let callbackIdCount = Math.floor(Math.random() * 134217728);<br/>
+            let postToNative = null;<br/>
+            const isNativePlatform = () =&gt; true;<br/>
+            const getPlatform = () =&gt; getPlatformId(win);<br/>
+            cap.getPlatform = getPlatform;<br/>
+            cap.isPluginAvailable = name =&gt; Object.prototype.hasOwnProperty.call(cap.Plugins, name);<br/>
+            cap.isNativePlatform = isNativePlatform;<br/>
+            // create the postToNative() fn if needed<br/>
+            if (getPlatformId(win) === 'android') {<br/>
+                // android platform<br/>
+                postToNative = data =&gt; {<br/>
+                    var _a;<br/>
+                    try {<br/>
+                        win.androidBridge.postMessage(safeStringify(data));<br/>
+                    }<br/>
+                    catch (e) {<br/>
+                        (_a = win === null || win === void 0 ? void 0 : win.console) === null || _a === void 0 ? void 0 : _a.error(e);<br/>
+                    }<br/>
+                };<br/>
+            }<br/>
+            else if (getPlatformId(win) === 'ios') {<br/>
+                // ios platform<br/>
+                postToNative = data =&gt; {<br/>
+                    var _a;<br/>
+                    try {<br/>
+                        data.type = data.type ? data.type : 'message';<br/>
+                        win.webkit.messageHandlers.bridge.postMessage(data);<br/>
+                    }<br/>
+                    catch (e) {<br/>
+                        (_a = win === null || win === void 0 ? void 0 : win.console) === null || _a === void 0 ? void 0 : _a.error(e);<br/>
+                    }<br/>
+                };<br/>
+            }<br/>
+            cap.handleWindowError = (msg, url, lineNo, columnNo, err) =&gt; {<br/>
+                const str = msg.toLowerCase();<br/>
+                if (str.indexOf('script error') &gt; -1) ;<br/>
+                else {<br/>
+                    const errObj = {<br/>
+                        type: 'js.error',<br/>
+                        error: {<br/>
+                            message: msg,<br/>
+                            url: url,<br/>
+                            line: lineNo,<br/>
+                            col: columnNo,<br/>
+                            errorObject: safeStringify(err),<br/>
+                        },<br/>
+                    };<br/>
+                    if (err !== null) {<br/>
+                        cap.handleError(err);<br/>
+                    }<br/>
+                    postToNative(errObj);<br/>
+                }<br/>
+                return false;<br/>
+            };<br/>
+            if (cap.DEBUG) {<br/>
+                window.onerror = cap.handleWindowError;<br/>
+            }<br/>
+            initLogger(win, cap);<br/>
+            /**<br/>
+             * Send a plugin method call to the native layer<br/>
+             */<br/>
+            cap.toNative = (pluginName, methodName, options, storedCallback) =&gt; {<br/>
+                var _a, _b;<br/>
+                try {<br/>
+                    if (typeof postToNative === 'function') {<br/>
+                        let callbackId = '-1';<br/>
+                        if (storedCallback &&<br/>
+                            (typeof storedCallback.callback === 'function' ||<br/>
+                                typeof storedCallback.resolve === 'function')) {<br/>
+                            // store the call for later lookup<br/>
+                            callbackId = String(++callbackIdCount);<br/>
+                            callbacks.set(callbackId, storedCallback);<br/>
+                        }<br/>
+                        const callData = {<br/>
+                            callbackId: callbackId,<br/>
+                            pluginId: pluginName,<br/>
+                            methodName: methodName,<br/>
+                            options: options || {},<br/>
+                        };<br/>
+                        if (cap.isLoggingEnabled && pluginName !== 'Console') {<br/>
+                            cap.logToNative(callData);<br/>
+                        }<br/>
+                        // post the call data to native<br/>
+                        postToNative(callData);<br/>
+                        return callbackId;<br/>
+                    }<br/>
+                    else {<br/>
+                        (_a = win === null || win === void 0 ? void 0 : win.console) === null || _a === void 0 ? void 0 : _a.warn(`implementation unavailable for: ${pluginName}`);<br/>
+                    }<br/>
+                }<br/>
+                catch (e) {<br/>
+                    (_b = win === null || win === void 0 ? void 0 : win.console) === null || _b === void 0 ? void 0 : _b.error(e);<br/>
+                }<br/>
+                return null;<br/>
+            };<br/>
+            /**<br/>
+             * Process a response from the native layer.<br/>
+             */<br/>
+            cap.fromNative = result =&gt; {<br/>
+                var _a, _b;<br/>
+                if (cap.isLoggingEnabled && result.pluginId !== 'Console') {<br/>
+                    cap.logFromNative(result);<br/>
+                }<br/>
+                // get the stored call, if it exists<br/>
+                try {<br/>
+                    const storedCall = callbacks.get(result.callbackId);<br/>
+                    if (storedCall) {<br/>
+                        // looks like we've got a stored call<br/>
+                        if (result.error) {<br/>
+                            // ensure stacktraces by copying error properties to an Error<br/>
+                            result.error = Object.keys(result.error).reduce((err, key) =&gt; {<br/>
+                                // use any type to avoid importing util and compiling most of .ts files<br/>
+                                err[key] = result.error[key];<br/>
+                                return err;<br/>
+                            }, new cap.Exception(''));<br/>
+                        }<br/>
+                        if (typeof storedCall.callback === 'function') {<br/>
+                            // callback<br/>
+                            if (result.success) {<br/>
+                                storedCall.callback(result.data);<br/>
+                            }<br/>
+                            else {<br/>
+                                storedCall.callback(null, result.error);<br/>
+                            }<br/>
+                        }<br/>
+                        else if (typeof storedCall.resolve === 'function') {<br/>
+                            // promise<br/>
+                            if (result.success) {<br/>
+                                storedCall.resolve(result.data);<br/>
+                            }<br/>
+                            else {<br/>
+                                storedCall.reject(result.error);<br/>
+                            }<br/>
+                            // no need to keep this stored callback<br/>
+                            // around for a one time resolve promise<br/>
+                            callbacks.delete(result.callbackId);<br/>
+                        }<br/>
+                    }<br/>
+                    else if (!result.success && result.error) {<br/>
+                        // no stored callback, but if there was an error let's log it<br/>
+                        (_a = win === null || win === void 0 ? void 0 : win.console) === null || _a === void 0 ? void 0 : _a.warn(result.error);<br/>
+                    }<br/>
+                    if (result.save === false) {<br/>
+                        callbacks.delete(result.callbackId);<br/>
+                    }<br/>
+                }<br/>
+                catch (e) {<br/>
+                    (_b = win === null || win === void 0 ? void 0 : win.console) === null || _b === void 0 ? void 0 : _b.error(e);<br/>
+                }<br/>
+                // always delete to prevent memory leaks<br/>
+                // overkill but we're not sure what apps will do with this data<br/>
+                delete result.data;<br/>
+                delete result.error;<br/>
+            };<br/>
+            cap.nativeCallback = (pluginName, methodName, options, callback) =&gt; {<br/>
+                if (typeof options === 'function') {<br/>
+                    console.warn(`Using a callback as the 'options' parameter of 'nativeCallback()' is deprecated.`);<br/>
+                    callback = options;<br/>
+                    options = null;<br/>
+                }<br/>
+                return cap.toNative(pluginName, methodName, options, { callback });<br/>
+            };<br/>
+            cap.nativePromise = (pluginName, methodName, options) =&gt; {<br/>
+                return new Promise((resolve, reject) =&gt; {<br/>
+                    cap.toNative(pluginName, methodName, options, {<br/>
+                        resolve: resolve,<br/>
+                        reject: reject,<br/>
+                    });<br/>
+                });<br/>
+            };<br/>
+            cap.withPlugin = (_pluginId, _fn) =&gt; dummy;<br/>
+            initEvents(win, cap);<br/>
+            initLegacyHandlers(win, cap);<br/>
+            initVendor(win, cap);<br/>
+            win.Capacitor = cap;<br/>
+        }<br/>
+        initNativeBridge(w);<br/>
+    };<br/>
+    initBridge(typeof globalThis !== 'undefined'<br/>
+        ? globalThis<br/>
+        : typeof self !== 'undefined'<br/>
+            ? self<br/>
+            : typeof window !== 'undefined'<br/>
+                ? window<br/>
+                : typeof global !== 'undefined'<br/>
+                    ? global<br/>
+                    : {});<br/>
+<br/>
+    dummy = initBridge;<br/>
+<br/>
+    Object.defineProperty(exports, '__esModule', { value: true });<br/>
+<br/>
+    return exports;<br/>
+<br/>
+}({}));<br/>
+<br/>
+<br/>
+// Begin: Capacitor Plugin JS<br/>
+(function(w) {<br/>
+var a = (w.Capacitor = w.Capacitor || {});<br/>
+var p = (a.Plugins = a.Plugins || {});<br/>
+var t = (p['App'] = {});<br/>
+t.addListener = function(eventName, callback) {<br/>
+  return w.Capacitor.addListener('App', eventName, callback);<br/>
+}<br/>
+t['getState'] = function(_options) {<br/>
+return w.Capacitor.nativePromise('App', 'getState', _options)<br/>
+}<br/>
+t['getInfo'] = function(_options) {<br/>
+return w.Capacitor.nativePromise('App', 'getInfo', _options)<br/>
+}<br/>
+t['removeAllListeners'] = function(_options) {<br/>
+return w.Capacitor.nativeCallback('App', 'removeAllListeners', _options)<br/>
+}<br/>
+t['getLaunchUrl'] = function(_options) {<br/>
+return w.Capacitor.nativePromise('App', 'getLaunchUrl', _options)<br/>
+}<br/>
+t['checkPermissions'] = function(_options) {<br/>
+return w.Capacitor.nativePromise('App', 'checkPermissions', _options)<br/>
+}<br/>
+t['requestPermissions'] = function(_options) {<br/>
+return w.Capacitor.nativePromise('App', 'requestPermissions', _options)<br/>
+}<br/>
+t['exitApp'] = function(_options) {<br/>
+return w.Capacitor.nativePromise('App', 'exitApp', _options)<br/>
+}<br/>
+})(window);<br/>
+<br/>
+(function(w) {<br/>
+var a = (w.Capacitor = w.Capacitor || {});<br/>
+var p = (a.Plugins = a.Plugins || {});<br/>
+var t = (p['Keyboard'] = {});<br/>
+t.addListener = function(eventName, callback) {<br/>
+  return w.Capacitor.addListener('Keyboard', eventName, callback);<br/>
+}<br/>
+t['setAccessoryBarVisible'] = function(_options) {<br/>
+return w.Capacitor.nativePromise('Keyboard', 'setAccessoryBarVisible', _options)<br/>
+}<br/>
+t['hide'] = function(_options) {<br/>
+return w.Capacitor.nativePromise('Keyboard', 'hide', _options)<br/>
+}<br/>
+t['removeAllListeners'] = function(_options) {<br/>
+return w.Capacitor.nativeCallback('Keyboard', 'removeAllListeners', _options)<br/>
+}<br/>
+t['checkPermissions'] = function(_options) {<br/>
+return w.Capacitor.nativePromise('Keyboard', 'checkPermissions', _options)<br/>
+}<br/>
+t['requestPermissions'] = function(_options) {<br/>
+return w.Capacitor.nativePromise('Keyboard', 'requestPermissions', _options)<br/>
+}<br/>
+t['setResizeMode'] = function(_options) {<br/>
+return w.Capacitor.nativePromise('Keyboard', 'setResizeMode', _options)<br/>
+}<br/>
+t['show'] = function(_options) {<br/>
+return w.Capacitor.nativePromise('Keyboard', 'show', _options)<br/>
+}<br/>
+t['setStyle'] = function(_options) {<br/>
+return w.Capacitor.nativePromise('Keyboard', 'setStyle', _options)<br/>
+}<br/>
+t['setScroll'] = function(_options) {<br/>
+return w.Capacitor.nativePromise('Keyboard', 'setScroll', _options)<br/>
+}<br/>
+})(window);<br/>
+<br/>
+(function(w) {<br/>
+var a = (w.Capacitor = w.Capacitor || {});<br/>
+var p = (a.Plugins = a.Plugins || {});<br/>
+var t = (p['Haptics'] = {});<br/>
+t.addListener = function(eventName, callback) {<br/>
+  return w.Capacitor.addListener('Haptics', eventName, callback);<br/>
+}<br/>
+t['notification'] = function(_options) {<br/>
+return w.Capacitor.nativePromise('Haptics', 'notification', _options)<br/>
+}<br/>
+t['selectionStart'] = function(_options) {<br/>
+return w.Capacitor.nativePromise('Haptics', 'selectionStart', _options)<br/>
+}<br/>
+t['removeAllListeners'] = function(_options) {<br/>
+return w.Capacitor.nativeCallback('Haptics', 'removeAllListeners', _options)<br/>
+}<br/>
+t['selectionChanged'] = function(_options) {<br/>
+return w.Capacitor.nativePromise('Haptics', 'selectionChanged', _options)<br/>
+}<br/>
+t['impact'] = function(_options) {<br/>
+return w.Capacitor.nativePromise('Haptics', 'impact', _options)<br/>
+}<br/>
+t['checkPermissions'] = function(_options) {<br/>
+return w.Capacitor.nativePromise('Haptics', 'checkPermissions', _options)<br/>
+}<br/>
+t['requestPermissions'] = function(_options) {<br/>
+return w.Capacitor.nativePromise('Haptics', 'requestPermissions', _options)<br/>
+}<br/>
+t['selectionEnd'] = function(_options) {<br/>
+return w.Capacitor.nativePromise('Haptics', 'selectionEnd', _options)<br/>
+}<br/>
+t['vibrate'] = function(_options) {<br/>
+return w.Capacitor.nativePromise('Haptics', 'vibrate', _options)<br/>
+}<br/>
+})(window);<br/>
+<br/>
+(function(w) {<br/>
+var a = (w.Capacitor = w.Capacitor || {});<br/>
+var p = (a.Plugins = a.Plugins || {});<br/>
+var t = (p['WebView'] = {});<br/>
+t.addListener = function(eventName, callback) {<br/>
+  return w.Capacitor.addListener('WebView', eventName, callback);<br/>
+}<br/>
+t['removeAllListeners'] = function(_options) {<br/>
+return w.Capacitor.nativeCallback('WebView', 'removeAllListeners', _options)<br/>
+}<br/>
+t['persistServerBasePath'] = function(_options) {<br/>
+return w.Capacitor.nativePromise('WebView', 'persistServerBasePath', _options)<br/>
+}<br/>
+t['checkPermissions'] = function(_options) {<br/>
+return w.Capacitor.nativePromise('WebView', 'checkPermissions', _options)<br/>
+}<br/>
+t['requestPermissions'] = function(_options) {<br/>
+return w.Capacitor.nativePromise('WebView', 'requestPermissions', _options)<br/>
+}<br/>
+t['setServerBasePath'] = function(_options) {<br/>
+return w.Capacitor.nativePromise('WebView', 'setServerBasePath', _options)<br/>
+}<br/>
+t['getServerBasePath'] = function(_options) {<br/>
+return w.Capacitor.nativePromise('WebView', 'getServerBasePath', _options)<br/>
+}<br/>
+})(window);<br/>
+<br/>
+(function(w) {<br/>
+var a = (w.Capacitor = w.Capacitor || {});<br/>
+var p = (a.Plugins = a.Plugins || {});<br/>
+var t = (p['StatusBar'] = {});<br/>
+t.addListener = function(eventName, callback) {<br/>
+  return w.Capacitor.addListener('StatusBar', eventName, callback);<br/>
+}<br/>
+t['hide'] = function(_options) {<br/>
+return w.Capacitor.nativePromise('StatusBar', 'hide', _options)<br/>
+}<br/>
+t['setBackgroundColor'] = function(_options) {<br/>
+return w.Capacitor.nativePromise('StatusBar', 'setBackgroundColor', _options)<br/>
+}<br/>
+t['setOverlaysWebView'] = function(_options) {<br/>
+return w.Capacitor.nativePromise('StatusBar', 'setOverlaysWebView', _options)<br/>
+}<br/>
+t['getInfo'] = function(_options) {<br/>
+return w.Capacitor.nativePromise('StatusBar', 'getInfo', _options)<br/>
+}<br/>
+t['removeAllListeners'] = function(_options) {<br/>
+return w.Capacitor.nativeCallback('StatusBar', 'removeAllListeners', _options)<br/>
+}<br/>
+t['checkPermissions'] = function(_options) {<br/>
+return w.Capacitor.nativePromise('StatusBar', 'checkPermissions', _options)<br/>
+}<br/>
+t['requestPermissions'] = function(_options) {<br/>
+return w.Capacitor.nativePromise('StatusBar', 'requestPermissions', _options)<br/>
+}<br/>
+t['show'] = function(_options) {<br/>
+return w.Capacitor.nativePromise('StatusBar', 'show', _options)<br/>
+}<br/>
+t['setStyle'] = function(_options) {<br/>
+return w.Capacitor.nativePromise('StatusBar', 'setStyle', _options)<br/>
+}<br/>
+})(window);<br/>
+<br/>
+window.Capacitor.PluginHeaders = [{"name":"App","methods":[{"name":"getState","rtype":"promise"},{"name":"getInfo","rtype":"promise"},{"name":"removeAllListeners"},{"name":"getLaunchUrl","rtype":"promise"},{"name":"checkPermissions","rtype":"promise"},{"name":"requestPermissions","rtype":"promise"},{"name":"exitApp","rtype":"promise"},{"name":"removeListener"},{"name":"addListener"}]},{"name":"Keyboard","methods":[{"name":"setAccessoryBarVisible","rtype":"promise"},{"name":"hide","rtype":"promise"},{"name":"removeAllListeners"},{"name":"checkPermissions","rtype":"promise"},{"name":"requestPermissions","rtype":"promise"},{"name":"setResizeMode","rtype":"promise"},{"name":"show","rtype":"promise"},{"name":"setStyle","rtype":"promise"},{"name":"removeListener"},{"name":"setScroll","rtype":"promise"},{"name":"addListener"}]},{"name":"Haptics","methods":[{"name":"notification","rtype":"promise"},{"name":"selectionStart","rtype":"promise"},{"name":"removeAllListeners"},{"name":"selectionChanged","rtype":"promise"},{"name":"impact","rtype":"promise"},{"name":"checkPermissions","rtype":"promise"},{"name":"requestPermissions","rtype":"promise"},{"name":"selectionEnd","rtype":"promise"},{"name":"vibrate","rtype":"promise"},{"name":"removeListener"},{"name":"addListener"}]},{"name":"WebView","methods":[{"name":"removeAllListeners"},{"name":"persistServerBasePath","rtype":"promise"},{"name":"checkPermissions","rtype":"promise"},{"name":"requestPermissions","rtype":"promise"},{"name":"removeListener"},{"name":"setServerBasePath","rtype":"promise"},{"name":"addListener"},{"name":"getServerBasePath","rtype":"promise"}]},{"name":"StatusBar","methods":[{"name":"hide","rtype":"promise"},{"name":"setBackgroundColor","rtype":"promise"},{"name":"setOverlaysWebView","rtype":"promise"},{"name":"getInfo","rtype":"promise"},{"name":"removeAllListeners"},{"name":"checkPermissions","rtype":"promise"},{"name":"requestPermissions","rtype":"promise"},{"name":"show","rtype":"promise"},{"name":"setStyle","rtype":"promise"},{"name":"removeListener"},{"name":"addListener"}]}];<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+&lt;/script&gt; <br/>
+  &lt;meta charset="utf-8"&gt;<br/>
+  &lt;style data-styles=""&gt;ion-select-popover,ion-select,ion-select-option,ion-menu-button,ion-menu,ion-menu-toggle,ion-action-sheet,ion-fab-button,ion-fab,ion-fab-list,ion-refresher-content,ion-refresher,ion-alert,ion-back-button,ion-loading,ion-toast,ion-card,ion-card-content,ion-card-header,ion-card-subtitle,ion-card-title,ion-item-option,ion-item-options,ion-item-sliding,ion-infinite-scroll-content,ion-infinite-scroll,ion-reorder,ion-reorder-group,ion-segment-button,ion-segment,ion-tab-button,ion-tab-bar,ion-chip,ion-modal,ion-popover,ion-searchbar,ion-app,ion-buttons,ion-content,ion-footer,ion-header,ion-router-outlet,ion-title,ion-toolbar,ion-route,ion-route-redirect,ion-router,ion-router-link,ion-avatar,ion-badge,ion-thumbnail,ion-col,ion-grid,ion-row,ion-nav,ion-nav-link,ion-slide,ion-slides,ion-checkbox,ion-img,ion-input,ion-progress-bar,ion-range,ion-split-pane,ion-text,ion-textarea,ion-toggle,ion-virtual-scroll,ion-picker,ion-datetime,ion-picker-column,ion-radio,ion-radio-group,ion-spinner,ion-backdrop,ion-ripple-effect,ion-button,ion-icon,ion-item-divider,ion-item-group,ion-note,ion-skeleton-text,ion-item,ion-label,ion-list,ion-list-header{visibility:hidden}.hydrated{visibility:inherit}&lt;/style&gt; <br/>
+  &lt;title&gt;Ionic App&lt;/title&gt; <br/>
+  &lt;base href="/"&gt; <br/>
+  &lt;meta name="color-scheme" content="light dark"&gt; <br/>
+  &lt;meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"&gt; <br/>
+  &lt;meta name="format-detection" content="telephone=no"&gt; <br/>
+  &lt;meta name="msapplication-tap-highlight" content="no"&gt; <br/>
+  &lt;style&gt;html.plt-mobile ion-app{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}html.plt-mobile ion-app [contenteditable]{-webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text}ion-app.force-statusbar-padding{--ion-safe-area-top:20px}&lt;/style&gt;<br/>
+  &lt;style&gt;ion-header{display:block;position:relative;-ms-flex-order:-1;order:-1;width:100%;z-index:10}ion-header ion-toolbar:first-of-type{padding-top:var(--ion-safe-area-top, 0)}.header-md::after{left:0;bottom:-5px;background-position:left 0 top -2px;position:absolute;width:100%;height:5px;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAHBAMAAADzDtBxAAAAD1BMVEUAAAAAAAAAAAAAAAAAAABPDueNAAAABXRSTlMUCS0gBIh/TXEAAAAaSURBVAjXYxCEAgY4UIICBmMogMsgFLtAAQCNSwXZKOdPxgAAAABJRU5ErkJggg==);background-repeat:repeat-x;content:""}[dir=rtl] .header-md::after,:host-context([dir=rtl]) .header-md::after{left:unset;right:unset;right:0}[dir=rtl] .header-md::after,:host-context([dir=rtl]) .header-md::after{background-position:right 0 top -2px}.header-collapse-condense{display:none}.header-md.ion-no-border::after{display:none}&lt;/style&gt;<br/>
+  &lt;style&gt;.item.sc-ion-label-md-h,.item .sc-ion-label-md-h{--color:initial;display:block;color:var(--color);font-family:var(--ion-font-family, inherit);font-size:inherit;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;-webkit-box-sizing:border-box;box-sizing:border-box}.ion-color.sc-ion-label-md-h{color:var(--ion-color-base)}.ion-text-wrap.sc-ion-label-md-h,[text-wrap].sc-ion-label-md-h{white-space:normal}.item-interactive-disabled.sc-ion-label-md-h:not(.item-multiple-inputs),.item-interactive-disabled:not(.item-multiple-inputs) .sc-ion-label-md-h{cursor:default;opacity:0.3;pointer-events:none}.item-input.sc-ion-label-md-h,.item-input .sc-ion-label-md-h{-ms-flex:initial;flex:initial;max-width:200px;pointer-events:none}.item-textarea.sc-ion-label-md-h,.item-textarea .sc-ion-label-md-h{-ms-flex-item-align:baseline;align-self:baseline}.label-fixed.sc-ion-label-md-h{-ms-flex:0 0 100px;flex:0 0 100px;width:100px;min-width:100px;max-width:200px}.label-stacked.sc-ion-label-md-h,.label-floating.sc-ion-label-md-h{margin-bottom:0;-ms-flex-item-align:stretch;align-self:stretch;width:auto;max-width:100%}.label-no-animate.label-floating.sc-ion-label-md-h{-webkit-transition:none;transition:none}.sc-ion-label-md-s h1,.sc-ion-label-md-s h2,.sc-ion-label-md-s h3,.sc-ion-label-md-s h4,.sc-ion-label-md-s h5,.sc-ion-label-md-s h6{text-overflow:inherit;overflow:inherit}.ion-text-wrap.sc-ion-label-md-h,[text-wrap].sc-ion-label-md-h{line-height:1.5}.label-stacked.sc-ion-label-md-h{-webkit-transform-origin:left top;transform-origin:left top;-webkit-transform:translateY(50%) scale(0.75);transform:translateY(50%) scale(0.75);-webkit-transition:color 150ms cubic-bezier(0.4, 0, 0.2, 1);transition:color 150ms cubic-bezier(0.4, 0, 0.2, 1)}[dir=rtl].sc-ion-label-md-h -no-combinator.label-stacked.sc-ion-label-md-h,[dir=rtl] .sc-ion-label-md-h -no-combinator.label-stacked.sc-ion-label-md-h,[dir=rtl].label-stacked.sc-ion-label-md-h,[dir=rtl] .label-stacked.sc-ion-label-md-h{-webkit-transform-origin:right top;transform-origin:right top}.label-floating.sc-ion-label-md-h{-webkit-transform:translateY(96%);transform:translateY(96%);-webkit-transform-origin:left top;transform-origin:left top;-webkit-transition:color 150ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-transform 150ms cubic-bezier(0.4, 0, 0.2, 1);transition:color 150ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-transform 150ms cubic-bezier(0.4, 0, 0.2, 1);transition:color 150ms cubic-bezier(0.4, 0, 0.2, 1), transform 150ms cubic-bezier(0.4, 0, 0.2, 1);transition:color 150ms cubic-bezier(0.4, 0, 0.2, 1), transform 150ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-transform 150ms cubic-bezier(0.4, 0, 0.2, 1)}[dir=rtl].sc-ion-label-md-h -no-combinator.label-floating.sc-ion-label-md-h,[dir=rtl] .sc-ion-label-md-h -no-combinator.label-floating.sc-ion-label-md-h,[dir=rtl].label-floating.sc-ion-label-md-h,[dir=rtl] .label-floating.sc-ion-label-md-h{-webkit-transform-origin:right top;transform-origin:right top}.item-textarea.label-floating.sc-ion-label-md-h,.item-textarea .label-floating.sc-ion-label-md-h{-webkit-transform:translateY(185%);transform:translateY(185%)}.label-stacked.sc-ion-label-md-h,.label-floating.sc-ion-label-md-h{margin-left:0;margin-right:0;margin-top:0;margin-bottom:0}.item-has-focus.label-floating.sc-ion-label-md-h,.item-has-focus .label-floating.sc-ion-label-md-h,.item-has-placeholder.sc-ion-label-md-h:not(.item-input).label-floating,.item-has-placeholder:not(.item-input) .label-floating.sc-ion-label-md-h,.item-has-value.label-floating.sc-ion-label-md-h,.item-has-value .label-floating.sc-ion-label-md-h{-webkit-transform:translateY(50%) scale(0.75);transform:translateY(50%) scale(0.75)}.item-has-focus.label-stacked.sc-ion-label-md-h:not(.ion-color),.item-has-focus .label-stacked.sc-ion-label-md-h:not(.ion-color),.item-has-focus.label-floating.sc-ion-label-md-h:not(.ion-color),.item-has-focus .label-floating.sc-ion-label-md-h:not(.ion-color){color:var(--ion-color-primary, #3880ff)}.item-has-focus.ion-color.label-stacked.sc-ion-label-md-h:not(.ion-color),.item-has-focus.ion-color .label-stacked.sc-ion-label-md-h:not(.ion-color),.item-has-focus.ion-color.label-floating.sc-ion-label-md-h:not(.ion-color),.item-has-focus.ion-color .label-floating.sc-ion-label-md-h:not(.ion-color){color:var(--ion-color-contrast)}.sc-ion-label-md-s h1{margin-left:0;margin-right:0;margin-top:0;margin-bottom:2px;font-size:24px;font-weight:normal}.sc-ion-label-md-s h2{margin-left:0;margin-right:0;margin-top:2px;margin-bottom:2px;font-size:16px;font-weight:normal}.sc-ion-label-md-s h3,.sc-ion-label-md-s h4,.sc-ion-label-md-s h5,.sc-ion-label-md-s h6{margin-left:0;margin-right:0;margin-top:2px;margin-bottom:2px;font-size:14px;font-weight:normal;line-height:normal}.sc-ion-label-md-s p{margin-left:0;margin-right:0;margin-top:0;margin-bottom:2px;font-size:14px;line-height:20px;text-overflow:inherit;overflow:inherit}.sc-ion-label-md-s&gt;p{color:var(--ion-color-step-600, #666666)}.sc-ion-label-md-h.ion-color.sc-ion-label-md-s&gt;p,.ion-color .sc-ion-label-md-h.sc-ion-label-md-s&gt;p{color:inherit}&lt;/style&gt;<br/>
+  &lt;link rel="icon" type="image/png" href="assets/icon/favicon.png"&gt; &lt;!-- add to homescreen for ios --&gt; <br/>
+  &lt;meta name="apple-mobile-web-app-capable" content="yes"&gt; <br/>
+  &lt;meta name="apple-mobile-web-app-status-bar-style" content="black"&gt; <br/>
+  &lt;link rel="stylesheet" href="styles.css"&gt;<br/>
+  &lt;style&gt;<br/>
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAuY29tcG9uZW50LnNjc3MifQ== */&lt;/style&gt;<br/>
+  &lt;style&gt;<br/>
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJ0YWJzLnBhZ2Uuc2NzcyJ9 */&lt;/style&gt;<br/>
+  &lt;style&gt;[_nghost-lsm-c128] {<br/>
+      display: flex;<br/>
+      position: absolute;<br/>
+      top: 0;<br/>
+      left: 0;<br/>
+      right: 0;<br/>
+      bottom: 0;<br/>
+<br/>
+      flex-direction: column;<br/>
+<br/>
+      width: 100%;<br/>
+      height: 100%;<br/>
+<br/>
+      contain: layout size style;<br/>
+      z-index: $z-index-page-container;<br/>
+    }<br/>
+    .tabs-inner[_ngcontent-lsm-c128] {<br/>
+      position: relative;<br/>
+<br/>
+      flex: 1;<br/>
+<br/>
+      contain: layout size style;<br/>
+    }&lt;/style&gt;<br/>
+  &lt;style&gt;<br/>
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJ0YWIxLnBhZ2Uuc2NzcyJ9 */&lt;/style&gt;<br/>
+  &lt;style&gt;#container[_ngcontent-lsm-c138] {<br/>
+  text-align: center;<br/>
+  position: absolute;<br/>
+  left: 0;<br/>
+  right: 0;<br/>
+  top: 50%;<br/>
+  transform: translateY(-50%);<br/>
+}<br/>
+<br/>
+#container[_ngcontent-lsm-c138]   strong[_ngcontent-lsm-c138] {<br/>
+  font-size: 20px;<br/>
+  line-height: 26px;<br/>
+}<br/>
+<br/>
+#container[_ngcontent-lsm-c138]   p[_ngcontent-lsm-c138] {<br/>
+  font-size: 16px;<br/>
+  line-height: 22px;<br/>
+  color: #8c8c8c;<br/>
+  margin: 0;<br/>
+}<br/>
+<br/>
+#container[_ngcontent-lsm-c138]   a[_ngcontent-lsm-c138] {<br/>
+  text-decoration: none;<br/>
+}<br/>
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImV4cGxvcmUtY29udGFpbmVyLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0Usa0JBQUE7RUFFQSxrQkFBQTtFQUNBLE9BQUE7RUFDQSxRQUFBO0VBQ0EsUUFBQTtFQUNBLDJCQUFBO0FBQUY7O0FBR0E7RUFDRSxlQUFBO0VBQ0EsaUJBQUE7QUFBRjs7QUFHQTtFQUNFLGVBQUE7RUFDQSxpQkFBQTtFQUVBLGNBQUE7RUFFQSxTQUFBO0FBRkY7O0FBS0E7RUFDRSxxQkFBQTtBQUZGIiwiZmlsZSI6ImV4cGxvcmUtY29udGFpbmVyLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiI2NvbnRhaW5lciB7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcblxuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIGxlZnQ6IDA7XG4gIHJpZ2h0OiAwO1xuICB0b3A6IDUwJTtcbiAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKC01MCUpO1xufVxuXG4jY29udGFpbmVyIHN0cm9uZyB7XG4gIGZvbnQtc2l6ZTogMjBweDtcbiAgbGluZS1oZWlnaHQ6IDI2cHg7XG59XG5cbiNjb250YWluZXIgcCB7XG4gIGZvbnQtc2l6ZTogMTZweDtcbiAgbGluZS1oZWlnaHQ6IDIycHg7XG5cbiAgY29sb3I6ICM4YzhjOGM7XG5cbiAgbWFyZ2luOiAwO1xufVxuXG4jY29udGFpbmVyIGEge1xuICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XG59Il19 */&lt;/style&gt;<br/>
+ &lt;/head&gt; <br/>
+ &lt;body&gt; &lt;app-root _nghost-lsm-c136="" ng-version="12.1.5"&gt;<br/>
+   &lt;ion-app _ngcontent-lsm-c136="" class="md ion-page hydrated"&gt;<br/>
+    &lt;ion-router-outlet _ngcontent-lsm-c136="" class="hydrated"&gt;<br/>
+     &lt;app-tabs _nghost-lsm-c137="" class="ion-page" style="z-index: 101;"&gt;<br/>
+      &lt;ion-tabs _ngcontent-lsm-c137="" _nghost-lsm-c128=""&gt;<br/>
+       &lt;div _ngcontent-lsm-c128="" class="tabs-inner"&gt;<br/>
+        &lt;ion-router-outlet _ngcontent-lsm-c128="" tabs="true" class="hydrated"&gt;<br/>
+         &lt;app-tab1 _nghost-lsm-c139="" class="ion-page" style="z-index: 101;"&gt;<br/>
+          &lt;ion-header _ngcontent-lsm-c139="" ng-reflect-translucent="true" role="banner" class="md header-md header-translucent header-collapse-none header-translucent-md hydrated"&gt;<br/>
+           &lt;!----&gt;<br/>
+           &lt;ion-toolbar _ngcontent-lsm-c139="" class="toolbar-title-default md in-toolbar hydrated"&gt;<br/>
+            &lt;ion-title _ngcontent-lsm-c139="" id="bienvenido" class="md title-default hydrated"&gt;<br/>
+              Bienvenido <br/>
+            &lt;/ion-title&gt;<br/>
+           &lt;/ion-toolbar&gt;<br/>
+          &lt;/ion-header&gt;<br/>
+          &lt;ion-content _ngcontent-lsm-c139="" ng-reflect-fullscreen="true" class="md hydrated" style="--offset-top:56px; --offset-bottom:0px;"&gt;<br/>
+           &lt;ion-header _ngcontent-lsm-c139="" collapse="condense" ng-reflect-collapse="condense" role="banner" class="md header-md header-collapse-condense hydrated"&gt;<br/>
+            &lt;!----&gt;<br/>
+            &lt;ion-toolbar _ngcontent-lsm-c139="" class="toolbar-title-large md in-toolbar hydrated"&gt;<br/>
+             &lt;ion-title _ngcontent-lsm-c139="" size="large" ng-reflect-size="large" class="md title-large hydrated"&gt;<br/>
+              Tab 1<br/>
+             &lt;/ion-title&gt;<br/>
+            &lt;/ion-toolbar&gt;<br/>
+           &lt;/ion-header&gt;<br/>
+           &lt;app-explore-container _ngcontent-lsm-c139="" name="App prueba page" _nghost-lsm-c138="" ng-reflect-name="App prueba page"&gt;<br/>
+            &lt;div _ngcontent-lsm-c138="" id="container"&gt;<br/>
+             &lt;strong _ngcontent-lsm-c138=""&gt;App prueba page&lt;/strong&gt;<br/>
+             &lt;p _ngcontent-lsm-c138=""&gt;Banca Movil Project&lt;/p&gt;<br/>
+             &lt;p _ngcontent-lsm-c138=""&gt;fray.benitez@avaldigitallabs.com&lt;/p&gt;<br/>
+            &lt;/div&gt;<br/>
+           &lt;/app-explore-container&gt;<br/>
+          &lt;/ion-content&gt;<br/>
+         &lt;/app-tab1&gt;<br/>
+        &lt;/ion-router-outlet&gt;&lt;!--container--&gt;<br/>
+       &lt;/div&gt;<br/>
+       &lt;ion-tab-bar _ngcontent-lsm-c137="" slot="bottom" role="tablist" class="md hydrated"&gt;<br/>
+        &lt;ion-tab-button _ngcontent-lsm-c137="" tab="tab1" ng-reflect-tab="tab1" role="tab" tabindex="0" aria-selected="true" id="tab-button-tab1" class="md tab-selected tab-has-label tab-has-icon tab-layout-icon-top ion-activatable ion-selectable ion-focusable hydrated"&gt;<br/>
+         &lt;ion-icon _ngcontent-lsm-c137="" name="triangle" ng-reflect-name="triangle" role="img" class="md hydrated" aria-label="triangle"&gt;&lt;/ion-icon&gt;<br/>
+         &lt;ion-label _ngcontent-lsm-c137="" id="triangle-id" class="sc-ion-label-md-h sc-ion-label-md-s md hydrated"&gt;<br/>
+          Triangle<br/>
+         &lt;/ion-label&gt;<br/>
+        &lt;/ion-tab-button&gt;<br/>
+        &lt;ion-tab-button _ngcontent-lsm-c137="" tab="tab2" ng-reflect-tab="tab2" role="tab" tabindex="0" id="tab-button-tab2" class="md tab-has-label tab-has-icon tab-layout-icon-top ion-activatable ion-selectable ion-focusable hydrated"&gt;<br/>
+         &lt;ion-icon _ngcontent-lsm-c137="" name="ellipse" ng-reflect-name="ellipse" role="img" class="md hydrated" aria-label="ellipse"&gt;&lt;/ion-icon&gt;<br/>
+         &lt;ion-label _ngcontent-lsm-c137="" id="ellipse-id" class="sc-ion-label-md-h sc-ion-label-md-s md hydrated"&gt;<br/>
+          Ellipse<br/>
+         &lt;/ion-label&gt;<br/>
+        &lt;/ion-tab-button&gt;<br/>
+        &lt;ion-tab-button _ngcontent-lsm-c137="" tab="tab3" ng-reflect-tab="tab3" role="tab" tabindex="0" id="tab-button-tab3" class="md tab-has-label tab-has-icon tab-layout-icon-top ion-activatable ion-selectable ion-focusable hydrated"&gt;<br/>
+         &lt;ion-icon _ngcontent-lsm-c137="" name="square" ng-reflect-name="square" role="img" class="md hydrated" aria-label="square"&gt;&lt;/ion-icon&gt;<br/>
+         &lt;ion-label _ngcontent-lsm-c137="" id="square-id" class="sc-ion-label-md-h sc-ion-label-md-s md hydrated"&gt;<br/>
+          Square<br/>
+         &lt;/ion-label&gt;<br/>
+        &lt;/ion-tab-button&gt;<br/>
+       &lt;/ion-tab-bar&gt;<br/>
+      &lt;/ion-tabs&gt;<br/>
+     &lt;/app-tabs&gt;<br/>
+    &lt;/ion-router-outlet&gt;&lt;!--container--&gt;<br/>
+   &lt;/ion-app&gt;<br/>
+  &lt;/app-root&gt; <br/>
+  &lt;script src="runtime.js" defer&gt;&lt;/script&gt;<br/>
+  &lt;script src="polyfills.js" defer&gt;&lt;/script&gt;<br/>
+  &lt;script src="vendor.js" defer&gt;&lt;/script&gt;<br/>
+  &lt;script src="main.js" defer&gt;&lt;/script&gt; <br/>
+ &lt;/body&gt;<br/>
+&lt;/html&gt;</code></pre></div></body></html>

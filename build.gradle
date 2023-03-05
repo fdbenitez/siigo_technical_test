@@ -48,7 +48,8 @@ dependencies {
             "com.esotericsoftware.yamlbeans:yamlbeans:${yamlbeansVersion}",
             'com.github.javafaker:javafaker:0.12',
             "com.googlecode.json-simple:json-simple:1.1.1",
-            "com.google.code.gson:gson:2.10.1"
+            "com.google.code.gson:gson:2.10.1",
+            "io.appium:java-client:8.3.0"
 }
 
 wrapper {

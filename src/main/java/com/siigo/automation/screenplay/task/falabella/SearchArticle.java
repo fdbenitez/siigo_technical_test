@@ -6,7 +6,7 @@ import net.serenitybdd.screenplay.Tasks;
 import net.serenitybdd.screenplay.actions.Enter;
 import org.openqa.selenium.Keys;
 
-import static com.siigo.automation.screenplay.ui.FalabellaHomePage.INPUT_SEARCH_ARTICLE;
+import static com.siigo.automation.screenplay.ui.web.FalabellaHomePage.INPUT_SEARCH_ARTICLE;
 import static com.siigo.automation.utils.Constants.PRODUCT;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 
