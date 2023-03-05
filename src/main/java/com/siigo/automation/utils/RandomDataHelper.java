@@ -17,6 +17,14 @@ public class RandomDataHelper {
         return (randomNumber.nextInt(1)+1);
     }
 
+    public static int singleUserRandom() {
+        return (randomNumber.nextInt(11)+1);
+    }
+
+    public static int singleUserIdRandom() {
+        return (randomNumber.nextInt(50)+50);
+    }
+
 
 }
 

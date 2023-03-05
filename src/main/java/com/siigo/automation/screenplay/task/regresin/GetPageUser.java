@@ -8,11 +8,11 @@ import static com.siigo.automation.utils.Constants.CONTENT_TYPE;
 import static com.siigo.automation.utils.Constants.PAGE;
 import static net.serenitybdd.screenplay.Tasks.instrumented;
 
-public class GetRequestService implements Task {
+public class GetPageUser implements Task {
     private final String nameService;
     private final int page;
 
-    public GetRequestService(String nameService, int page) {
+    public GetPageUser(String nameService, int page) {
         this.nameService = nameService;
         this.page = page;
 
@@ -25,8 +25,8 @@ public class GetRequestService implements Task {
                 .param(PAGE, page)));
     }
 
-    public static GetRequestService requestService(String nameService, int page) {
-        return instrumented(GetRequestService.class, nameService, page);
+    public static GetPageUser request(String nameService, int page) {
+        return instrumented(GetPageUser.class, nameService, page);
     }
 
 }

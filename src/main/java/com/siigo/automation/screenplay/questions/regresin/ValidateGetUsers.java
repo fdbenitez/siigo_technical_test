@@ -17,6 +17,7 @@ public class ValidateGetUsers implements Question<String> {
                 seeThatResponse(VALIDATE_STATUS_CODE, response -> response.statusCode(SUCCESS_CODE)),
                 seeThatResponse(VALIDATE_PAGE, response -> response.body(PAGE, is(equalTo(pageSaved))))
         );
+        actor.forget(PAGE);
         return VALIDATE_SUCCEEDED;
     }
 

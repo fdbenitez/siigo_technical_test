@@ -3,6 +3,7 @@ package com.siigo.automation.stepdefinitions.commons;
 import com.siigo.automation.model.models.client.Client;
 import com.siigo.automation.screenplay.questions.falabella.ValidatePrice;
 import com.siigo.automation.screenplay.questions.falabella.ValidateProduct;
+import com.siigo.automation.screenplay.questions.regresin.ResourceNotFound;
 import com.siigo.automation.utils.SessionHelper;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -39,6 +40,11 @@ public class CommonsSteps {
                 seeThat(VALIDATE_PRICE, ValidatePrice.orderStatus(), equalTo(subtotalSaved)),
                 seeThat(VALIDATE_PRODUCT, ValidateProduct.orderStatus(), equalTo(productSaved))
         );
+    }
+
+    @Then("no se encuentran resultados en la busqueda")
+    public void noSeEncuentranResultadosEnLaBusqueda() {
+        theActorInTheSpotlight().asksFor(ResourceNotFound.validate());
 
     }
 }
