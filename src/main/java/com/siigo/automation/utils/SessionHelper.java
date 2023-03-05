@@ -13,9 +13,8 @@ public class SessionHelper {
     }
 
     public enum SessionData {
-        TOKEN("token"),
         ACTIVE_CLIENT("activeClient"),
-        ACTIVE_APIM("activeApim");
+        BODY("bodyRequest");
 
         private final String value;
 

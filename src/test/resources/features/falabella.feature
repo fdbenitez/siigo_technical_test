@@ -1,9 +1,9 @@
-# Autor: fray.benitez@ficohsa.com
+# Autor: ingfray@gmail.com
 @Fallabella
 Feature: Cliente Falabella
   Compra de un artículo con garantía extendida en el e-commerce de falabella
 
-  @BuyArticle
+  @BuyArticleChrome
   Scenario: Compra de un articulo con garantia extendida en chrome
     Given Que "Fray" es un usuario que navega a la pagina web de google en su navegador chrome
     When rechaze los anuncios en la tienda de "Falabella"

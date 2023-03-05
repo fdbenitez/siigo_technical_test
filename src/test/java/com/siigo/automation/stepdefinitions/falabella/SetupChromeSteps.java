@@ -1,7 +1,7 @@
 package com.siigo.automation.stepdefinitions.falabella;
 
 import com.siigo.automation.model.models.client.Client;
-import com.siigo.automation.screenplay.task.*;
+import com.siigo.automation.screenplay.task.falabella.*;
 import com.siigo.automation.utils.SessionHelper;
 import com.siigo.automation.utils.ShadowHandler;
 import io.cucumber.java.en.Given;
@@ -21,7 +21,7 @@ import static net.serenitybdd.screenplay.actors.OnStage.theActorCalled;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 
 public class SetupChromeSteps {
-    @Managed(driver = DRIVER_CHROME)
+    @Managed(driver = "chrome")
     private WebDriver driver;
 
     @Given("Que {string} es un usuario que navega a la pagina web de google en su navegador chrome")
